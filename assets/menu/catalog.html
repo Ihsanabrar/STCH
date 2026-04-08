@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Susiana Tabrani Convention Hall - Venue Eksklusif Pekanbaru</title>
+    <meta name="description"
+        content="Gedung serbaguna mewah kapasitas 2000 orang, parkir luas, nuansa Islami, arsitektur megah di pusat kota Pekanbaru.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS (tidak diubah) -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ===== MODAL POPUP STYLE (TAMBAHAN, TIDAK MENGUBAH DESAIN ASLI) ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: white;
+            width: 90%;
+            max-width: 520px;
+            border-radius: 24px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform: scale(0.92);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.25s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-overlay.active {
+            animation: modalBgFade 0.25s ease-out;
+        }
+
+        @keyframes modalBgFade {
+            0% {
+                backdrop-filter: blur(0px);
+                background-color: rgba(0, 0, 0, 0);
+            }
+            100% {
+                backdrop-filter: blur(4px);
+                background-color: rgba(0, 0, 0, 0.75);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: #1e2a2e;
+            letter-spacing: -0.2px;
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.2s;
+            width: auto;
+            padding: 0;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .modal-close-btn:hover {
+            color: #C5A059;
+            background: transparent;
+        }
+
+        .modal-body {
+            padding: 1.6rem 1.8rem 2rem 1.8rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e2f;
+            line-height: 1.55;
+        }
+
+        .modal-desc {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #3a4a3f;
+        }
+
+        .modal-detail-list {
+            background: #f9f5eb;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            margin: 1rem 0 1rem 0;
+            border-left: 4px solid #C5A059;
+        }
+
+        .modal-detail-list p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .modal-detail-list i {
+            width: 24px;
+            color: #C5A059;
+        }
+
+        .modal-footer {
+            padding: 0.8rem 1.5rem 1.6rem 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #f0e6d5;
+        }
+
+        .btn-modal-close {
+            background: #C5A059;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: auto;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-modal-close:hover {
+            background: #a5823e;
+        }
+
+        .btn-small {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="../logo-stch.png" alt="STCH"
+                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                </a>
+            </div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="../../index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="catalog.html" class="nav-link active">Pricelist</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <a href="reservasi/reservasi.php" class="btn btn-primary">Booking Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MOBILE NAV ========== -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <img src="../logo-stch.png" alt="STCH"
+                    onerror="this.src='https://via.placeholder.com/120x40/1A1A1A/C5A059?text=STCH'">
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Beranda</a></li>
+            <li><a href="#catalog" class="mobile-nav-link">Pricelist</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Kontak</a></li>
+            <li><a href="#booking" class="btn btn-primary" style="margin-top:1rem;">Booking Now</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== PRICELIST SECTION (E-SHOPPER STYLE) ========== -->
+    <section class="Pricelist" id="catalog">
+        <div class="container">
+            <br><br><br><br>
+            <div class="catalog-layout" data-aos="fade-up">
+                <!-- Sidebar Kategori -->
+                <aside class="catalog-sidebar">
+                    <h3>KATEGORI</h3>
+                    <ul>
+                        <li><a href="#TGH">TGH</a></li>
+                        <li><a href="#STCH">STCH</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Konten Utama -->
+                <main class="catalog-main">
+
+
+                    <!-- Section TERBARU: Tabrani Guest House -->
+                    <section class="TGH" id="TGH">
+                        <div class="product-section">
+                            <h3>Tabrani Guest House</h3>
+                            <div class="product-grid">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="reservasi/GUEST_HOUSE/family_room.jpg" alt="Family Room" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Family+Room'">
+                                    </div>
+                                    <div class="product-title">Family Room</div>
+                                    <div class="product-price">Hubungi untuk harga</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="reservasi/GUEST_HOUSE/Standard_Room_Double_Bed.jpg" alt="Double Bed" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Standard+Double'">
+                                    </div>
+                                    <div class="product-title">Standard Room Double Bed</div>
+                                    <div class="product-price">Hubungi untuk harga</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="reservasi/GUEST_HOUSE/Standard_Room_Twin_Bed.jpg" alt="Twin Bed" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Twin+Room'">
+                                    </div>
+                                    <div class="product-title">Standard Room Twin Bed</div>
+                                    <div class="product-price">Hubungi untuk harga</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section POPULER: Susiana Tabrani Convention Hall -->
+                    <section class="STCH" id="STCH">
+                        <div class="product-section">
+                            <h3>Susiana Tabrani Convention Hall</h3>
+                            <div class="product-grid">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="../whatsapp-image-2025-07-02-at-15.21.19.jpeg" alt="Paket Nikah" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Wedding'">
+                                    </div>
+                                    <div class="product-title">Wedding Package</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="../img_1192.webp" alt="Paket Seminar" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Graduation'">
+                                    </div>
+                                    <div class="product-title">Graduation Package</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="../img_5606.webp" alt="Manasik" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Manasik'">
+                                    </div>
+                                    <div class="product-title">Manasik Haji & Umroh</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="../img_0193.webp" alt="Iftar" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Iftar'">
+                                    </div>
+                                    <div class="product-title">Iftar Package</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="../img-20241119-wa0015-edited.jpg" alt="Birthday" onerror="this.src='https://via.placeholder.com/200x200/1A1A1A/C5A059?text=Birthday'">
+                                    </div>
+                                    <div class="product-title">Birthday Party</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../logo-stch.png" alt="STCH"
+                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                    <p>Gedung serbaguna mewah dengan nuansa Islami dan Melayu di jantung kota Pekanbaru.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#catalog">Pricelist</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Pernikahan</a></li>
+                        <li><a href="#">Seminar</a></li>
+                        <li><a href="#">Wisuda</a></li>
+                        <li><a href="#">Iftar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Susiana Tabrani Convention Hall. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== MODAL POPUP ========== -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalPackageTitle">Detail Paket</h3>
+                <button class="modal-close-btn" id="modalCloseIconBtn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBodyContent">
+                <div class="modal-desc" id="modalDescText"></div>
+                <div class="modal-detail-list" id="modalFacilities"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" id="modalFooterCloseBtn">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/script.js"></script>
+    
+    <script>
+        (function() {
+            const modalOverlay = document.getElementById('detailModal');
+            const modalTitle = document.getElementById('modalPackageTitle');
+            const modalDescText = document.getElementById('modalDescText');
+            const modalFacilities = document.getElementById('modalFacilities');
+            const closeIcon = document.getElementById('modalCloseIconBtn');
+            const footerCloseBtn = document.getElementById('modalFooterCloseBtn');
+
+            function closeModal() {
+                if (modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function openModal(packageName) {
+                if (!modalOverlay) return;
+                modalTitle.innerText = packageName || "Detail Paket";
+                
+                let mainDescription = "";
+                let facilitiesHtml = "";
+                const baseLorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.";
+                
+                if (packageName.toLowerCase().includes("family room")) {
+                    mainDescription = "🌸 Family Room TGH: luas & hangat untuk keluarga. " + baseLorem.slice(0, 160);
+                    facilitiesHtml = `<p><i class="fas fa-bed"></i> 2 Queen Bed + 1 Single Bed</p><p><i class="fas fa-wifi"></i> WiFi 100 Mbps</p><p><i class="fas fa-tv"></i> Smart TV 50"</p>`;
+                } else if (packageName.toLowerCase().includes("double bed")) {
+                    mainDescription = "✨ Standard Room Double Bed nyaman & modern. " + baseLorem.slice(0, 150);
+                    facilitiesHtml = `<p><i class="fas fa-bed"></i> 1 Extra Comfort Double Bed</p><p><i class="fas fa-wind"></i> AC Central</p><p><i class="fas fa-shower"></i> Shower + Water Heater</p>`;
+                } else if (packageName.toLowerCase().includes("twin bed")) {
+                    mainDescription = "🛏️ Standard Room Twin Bed ideal untuk rekan bisnis. " + baseLorem.slice(0, 150);
+                    facilitiesHtml = `<p><i class="fas fa-bed"></i> 2 Single Bed (extra panjang)</p><p><i class="fas fa-desk"></i> Meja kerja + Lampu baca</p><p><i class="fas fa-lock"></i> Safety Deposit Box</p>`;
+                } else if (packageName.toLowerCase().includes("wedding")) {
+                    mainDescription = "💍 Paket Pernikahan Eksklusif: dekorasi megah, katering 500 pax, dokumentasi. " + baseLorem.slice(0, 170);
+                    facilitiesHtml = `<p><i class="fas fa-ring"></i> Dekorasi pelaminan + panggung</p><p><i class="fas fa-utensils"></i> Menu premium 8 hidangan</p><p><i class="fas fa-camera"></i> Foto & video prewedding</p>`;
+                } else if (packageName.toLowerCase().includes("graduation")) {
+                    mainDescription = "🎓 Paket Wisuda: panggung, backdrop, snack box. " + baseLorem.slice(0, 150);
+                    facilitiesHtml = `<p><i class="fas fa-microphone"></i> Sound System + Wireless Mic</p><p><i class="fas fa-chair"></i> Kursi VIP 200 + Kursi tamu 800</p><p><i class="fas fa-bullhorn"></i> MC Profesional</p>`;
+                } else if (packageName.toLowerCase().includes("manasik")) {
+                    mainDescription = "🕋 Paket Manasik Haji & Umroh dengan simulasi lengkap. " + baseLorem.slice(0, 160);
+                    facilitiesHtml = `<p><i class="fas fa-mosque"></i> Area simulasi sa'i & lempar jumrah</p><p><i class="fas fa-video"></i> Proyektor + layar lebar</p><p><i class="fas fa-hand-holding-heart"></i> Materi panduan digital</p>`;
+                } else if (packageName.toLowerCase().includes("iftar")) {
+                    mainDescription = "🌙 Iftar Package (Bukber): menu berbuka + takjil, ruang privat. " + baseLorem.slice(0, 150);
+                    facilitiesHtml = `<p><i class="fas fa-utensils"></i> Menu: Kolak, kurma, nasi kebuli, ayam bakar</p><p><i class="fas fa-moon"></i> Dekorasi Ramadhan eksklusif</p><p><i class="fas fa-charging-station"></i> Tempat wudhu luas</p>`;
+                } else if (packageName.toLowerCase().includes("birthday")) {
+                    mainDescription = "🎂 Birthday Party Package: dekorasi tema, kue, entertainment. " + baseLorem.slice(0, 150);
+                    facilitiesHtml = `<p><i class="fas fa-balloon"></i> Dekorasi balon + backdrop</p><p><i class="fas fa-music"></i> Sound system + mic wireless</p><p><i class="fas fa-gift"></i> Doorprize & goodie bag</p>`;
+                } else {
+                    mainDescription = "✨ " + baseLorem.slice(0, 200) + " Paket dapat disesuaikan.";
+                    facilitiesHtml = `<p><i class="fas fa-check-circle"></i> Fasilitas premium convention hall</p><p><i class="fas fa-parking"></i> Parkir luas</p><p><i class="fas fa-wifi"></i> WiFi kecepatan tinggi</p>`;
+                }
+                
+                modalDescText.innerHTML = mainDescription;
+                modalFacilities.innerHTML = facilitiesHtml;
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function handleDetailClick(event) {
+                event.preventDefault();
+                const card = event.currentTarget.closest('.product-card');
+                if (!card) return;
+                const titleElem = card.querySelector('.product-title');
+                const packageName = titleElem ? titleElem.innerText.trim() : "Paket Pilihan";
+                openModal(packageName);
+            }
+
+            function bindDetailButtons() {
+                document.querySelectorAll('.btn-small').forEach(btn => {
+                    btn.removeEventListener('click', handleDetailClick);
+                    btn.addEventListener('click', handleDetailClick);
+                });
+            }
+
+            if (closeIcon) closeIcon.addEventListener('click', closeModal);
+            if (footerCloseBtn) footerCloseBtn.addEventListener('click', closeModal);
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+            }
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modalOverlay?.classList.contains('active')) closeModal(); });
+            
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindDetailButtons);
+            else bindDetailButtons();
+        })();
+    </script>
+</body>
+</html>
