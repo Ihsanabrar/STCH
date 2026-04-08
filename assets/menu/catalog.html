@@ -53,7 +53,7 @@
             padding: 0 20px;
         }
 
-        /* ========== HEADER (Tidak berubah) ========== */
+        /* ========== HEADER ========== */
         header {
             position: fixed;
             top: 0;
@@ -71,10 +71,16 @@
             align-items: center;
             padding: 5px 0;
             position: relative;
+            gap: 15px; /* memberikan jarak antar elemen */
+        }
+
+        .logo {
+            flex-shrink: 0; /* logo tidak mengecil */
         }
 
         .logo img {
             height: 70px;
+            display: block;
         }
 
         .nav-desktop {
@@ -116,6 +122,13 @@
             width: 100%;
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-shrink: 0; /* area kanan tidak mengecil */
+        }
+
         .btn-primary {
             background: var(--black);
             color: var(--white);
@@ -130,6 +143,7 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            white-space: nowrap;
         }
 
         .btn-primary:hover {
@@ -143,6 +157,8 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--black);
+            padding: 5px;
         }
 
         /* Mobile Nav */
@@ -169,11 +185,16 @@
             margin-bottom: 2rem;
         }
 
+        .mobile-nav-header .logo img {
+            height: 55px;
+        }
+
         .mobile-nav-close {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            color: var(--black);
         }
 
         .mobile-nav-links {
@@ -189,7 +210,7 @@
             color: var(--black);
         }
 
-        /* ========== ENHANCED PRICELIST SECTION ========== */
+        /* ========== ENHANCED PRICELIST SECTION (tidak diubah) ========== */
         .pricelist-hero {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             padding: 140px 0 60px;
@@ -493,7 +514,7 @@
             margin: 0 auto 25px;
         }
 
-        /* ========== FOOTER (SAMA PERSIS DENGAN ASLI, TIDAK DIUBAH) ========== */
+        /* ========== FOOTER (SAMA PERSIS DENGAN ASLI) ========== */
         .footer {
             background: var(--black);
             color: white;
@@ -548,40 +569,7 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .catalog-layout {
-                grid-template-columns: 1fr;
-            }
-            .catalog-sidebar {
-                position: static;
-                margin-bottom: 30px;
-            }
-            .nav-desktop {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .pricelist-hero h1 {
-                font-size: 2.5rem;
-            }
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            .cta-banner {
-                padding: 30px 20px;
-            }
-        }
-
-        /* ========== MODAL STYLE (Tombol Book Now) ========== */
+        /* ========== MODAL STYLE ========== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -669,6 +657,113 @@
             background: #a5823e;
             transform: scale(1.02);
         }
+
+        /* ========== RESPONSIVE NAVBAR IMPROVEMENTS ========== */
+        /* Tablet & Mobile: sembunyikan desktop nav, tampilkan mobile menu */
+        @media (max-width: 1024px) {
+            .nav-desktop {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            /* Perbaiki jarak pada header agar tidak sempit */
+            .header-container {
+                padding: 5px 15px;
+                gap: 12px;
+            }
+            .btn-primary {
+                padding: 8px 18px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Layar kecil (max-width 768px) */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 5px 12px;
+                gap: 8px;
+            }
+            .logo img {
+                height: 55px; /* proporsional, tidak mengubah desain */
+            }
+            .header-right {
+                gap: 0.8rem;
+            }
+            .btn-primary {
+                padding: 6px 14px;
+                font-size: 0.7rem;
+                letter-spacing: 0.5px;
+            }
+            .mobile-menu-btn {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Layar sangat kecil (max-width 480px) */
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 5px 10px;
+            }
+            .logo img {
+                height: 48px;
+            }
+            .btn-primary {
+                padding: 5px 10px;
+                font-size: 0.65rem;
+            }
+            .mobile-menu-btn {
+                font-size: 1.3rem;
+            }
+            .header-right {
+                gap: 0.5rem;
+            }
+        }
+
+        /* Perbaikan untuk landscape mode di tablet kecil */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .header-container {
+                padding: 3px 15px;
+            }
+            .logo img {
+                height: 50px;
+            }
+        }
+
+        /* Pastikan mobile nav tidak mengganggu scroll dan konsisten */
+        .mobile-nav.active {
+            overflow-y: auto;
+        }
+        
+        /* Tetap pertahankan tata letak konten lainnya */
+        @media (max-width: 992px) {
+            .catalog-layout {
+                grid-template-columns: 1fr;
+            }
+            .catalog-sidebar {
+                position: static;
+                margin-bottom: 30px;
+            }
+            .pricelist-hero h1 {
+                font-size: 2.5rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-banner {
+                padding: 30px 20px;
+            }
+            .pricelist-hero {
+                padding: 110px 0 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -696,14 +791,14 @@
 
 <div class="mobile-nav" id="mobileNav">
     <div class="mobile-nav-header">
-        <div class="logo"><img src="../logo-stch.png" alt="STCH"></div>
+        <div class="logo"><img src="../logo-stch.png" alt="STCH" onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'"></div>
         <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
     </div>
     <ul class="mobile-nav-links">
         <li><a href="../../index.html" class="mobile-nav-link">Beranda</a></li>
-        <li><a href="catalog.html" class="mobile-nav-link">Pricelist</a></li>
+        <li><a href="catalog.html" class="mobile-nav-link active">Pricelist</a></li>
         <li><a href="../../index.html#contact" class="mobile-nav-link">Kontak</a></li>
-        <li><a href="reservasi/reservasi.php" class="btn-primary" style="margin-top:1rem; text-align:center;">Booking Now</a></li>
+        <li><a href="reservasi/reservasi.php" class="btn-primary" style="margin-top:1rem; text-align:center; display:block;">Booking Now</a></li>
     </ul>
 </div>
 
@@ -836,12 +931,10 @@
                 </section>
             </main>
         </div>
-
-        <!-- CTA Banner -->
     </div>
 </section>
 
-<!-- ========== FOOTER (SAMA PERSIS DENGAN ASLI, TIDAK BERUBAH) ========== -->
+<!-- ========== FOOTER ========== -->
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -873,7 +966,7 @@
     </div>
 </footer>
 
-<!-- MODAL POPUP dengan tombol BOOK NOW -->
+<!-- MODAL POPUP -->
 <div class="modal-overlay" id="detailModal">
     <div class="modal-container">
         <div class="modal-header">
@@ -885,7 +978,7 @@
             <div class="modal-detail-list" id="modalFacilities"></div>
         </div>
         <div class="modal-footer">
-            <a href="reservasi/reservasi.php" class="btn-book-now" id="bookNowBtn">📅 Book Now</a>
+            <a href="reservasi/reservasi.php" class="btn-book-now" id="bookNowBtn">Book Now</a>
         </div>
     </div>
 </div>
@@ -945,7 +1038,6 @@
         document.body.style.overflow = '';
     }
     
-    // Event listener untuk tombol "Lihat Detail"
     document.querySelectorAll('.btn-small').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const card = btn.closest('.product-card');
