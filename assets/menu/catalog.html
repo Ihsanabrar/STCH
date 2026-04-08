@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Pricelist & Paket - Susiana Tabrani Convention Hall</title>
-    <meta name="description" content="Lihat daftar harga dan paket eksklusif dari Tabrani Guest House dan Susiana Tabrani Convention Hall. Tersedia paket pernikahan, wisuda, iftar, dan lainnya.">
+    <meta name="description"
+        content="Lihat daftar harga dan paket eksklusif dari Tabrani Guest House dan Susiana Tabrani Convention Hall. Tersedia paket pernikahan, wisuda, iftar, dan lainnya.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,1038 +21,333 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <style>
-        /* ========== VARIABLES (Sama persis dengan asli) ========== */
-        :root {
-            --black: #1A1A1A;
-            --gold: #C5A059;
-            --white: white;
-            --offwhite: #F9F9F9;
-            --gray: #333333;
-            --light-gray: #DDDDDD;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --font-heading: 'Cormorant Garamond', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--gray);
-            background: var(--offwhite);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ========== HEADER ========== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-            position: relative;
-            gap: 15px; /* memberikan jarak antar elemen */
-        }
-
-        .logo {
-            flex-shrink: 0; /* logo tidak mengecil */
-        }
-
-        .logo img {
-            height: 70px;
-            display: block;
-        }
-
-        .nav-desktop {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-        }
-
-        .nav-desktop ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            color: var(--black);
-            position: relative;
-            padding: 5px 0;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex-shrink: 0; /* area kanan tidak mengecil */
-        }
-
-        .btn-primary {
-            background: var(--black);
-            color: var(--white);
-            border: 1px solid var(--black);
-            padding: 10px 24px;
-            border-radius: 0;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            transition: var(--transition);
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--black);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--black);
-            padding: 5px;
-        }
-
-        /* Mobile Nav */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100vh;
-            background: var(--white);
-            z-index: 1001;
-            padding: 20px;
-            transition: left 0.3s ease;
-        }
-
-        .mobile-nav.active {
-            left: 0;
-        }
-
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .mobile-nav-header .logo img {
-            height: 55px;
-        }
-
-        .mobile-nav-close {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--black);
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            padding: 15px 0;
-            font-size: 1.2rem;
-            border-bottom: 1px solid var(--light-gray);
-            text-decoration: none;
-            color: var(--black);
-        }
-
-        /* ========== ENHANCED PRICELIST SECTION (tidak diubah) ========== */
-        .pricelist-hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            padding: 140px 0 60px;
-            text-align: center;
-            color: white;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricelist-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23C5A059" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
-            background-size: cover;
-            opacity: 0.3;
-        }
-
-        .pricelist-hero h1 {
-            font-family: var(--font-heading);
-            font-size: 3.2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .pricelist-hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        /* Catalog Layout Enhanced */
-        .catalog-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        /* Sidebar Premium */
-        .catalog-sidebar {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-
-        .catalog-sidebar h3 {
-            font-family: var(--font-heading);
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            color: var(--black);
-            border-left: 4px solid var(--gold);
-            padding-left: 15px;
-        }
-
-        .catalog-sidebar ul {
-            list-style: none;
-        }
-
-        .catalog-sidebar li {
-            margin-bottom: 12px;
-        }
-
-        .catalog-sidebar a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 15px;
-            color: var(--gray);
-            font-weight: 500;
-            border-radius: 12px;
-            transition: var(--transition);
-            text-decoration: none;
-            background: var(--offwhite);
-        }
-
-        .catalog-sidebar a i {
-            color: var(--gold);
-            width: 24px;
-            font-size: 1.1rem;
-        }
-
-        .catalog-sidebar a:hover,
-        .catalog-sidebar a.active-cat {
-            background: var(--gold);
-            color: var(--black);
-            transform: translateX(5px);
-        }
-
-        .catalog-sidebar a:hover i,
-        .catalog-sidebar a.active-cat i {
-            color: var(--black);
-        }
-
-        .contact-sidebar-card {
-            margin-top: 30px;
-            background: linear-gradient(135deg, #f9f5eb, #fff);
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--gold);
-        }
-
-        .contact-sidebar-card h4 {
-            font-family: var(--font-heading);
-            margin-bottom: 10px;
-        }
-
-        .contact-sidebar-card .btn-outline-gold {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 12px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .contact-sidebar-card .btn-outline-gold:hover {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        /* Product Section */
-        .product-section {
-            margin-bottom: 60px;
-        }
-
-        .product-section h3 {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--black);
-            position: relative;
-            display: inline-block;
-        }
-
-        .product-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 70px;
-            height: 3px;
-            background: var(--gold);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 30px;
-        }
-
-        /* Card Premium */
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--gold);
-        }
-
-        .badge-offer {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--gold);
-            color: var(--black);
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            z-index: 2;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .product-image {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-            background: #f0f0f0;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.08);
-        }
-
-        .product-info {
-            padding: 20px 18px 22px;
-        }
-
-        .product-title {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--black);
-        }
-
-        .product-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 10px 0;
-            font-size: 0.8rem;
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        .product-meta i {
-            margin-right: 4px;
-        }
-
-        .product-price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin: 12px 0;
-        }
-
-        .product-desc {
-            font-size: 0.85rem;
-            color: #5a5a5a;
-            margin-bottom: 18px;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .btn-small {
-            background: var(--black);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            border-radius: 40px;
-            font-weight: 500;
-        }
-
-        .btn-small:hover {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        /* CTA Banner */
-        .cta-banner {
-            background: linear-gradient(120deg, #1e1e1e, #2a2a2a);
-            border-radius: 24px;
-            padding: 50px 40px;
-            text-align: center;
-            margin: 40px 0 60px;
-            border: 1px solid var(--gold);
-        }
-
-        .cta-banner h3 {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .cta-banner p {
-            color: #ddd;
-            max-width: 600px;
-            margin: 0 auto 25px;
-        }
-
-        /* ========== FOOTER (SAMA PERSIS DENGAN ASLI) ========== */
-        .footer {
-            background: var(--black);
-            color: white;
-            padding: 60px 0 20px;
-            border-top: 2px solid var(--gold);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo img {
-            height: 50px;
-            margin-bottom: 1rem;
-            filter: brightness(0) invert(1);
-        }
-
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* ========== MODAL STYLE ========== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.3s;
-            pointer-events: none;
-        }
-        .modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .modal-container {
-            background: white;
-            width: 90%;
-            max-width: 550px;
-            border-radius: 28px;
-            overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-        .modal-overlay.active .modal-container {
-            transform: scale(1);
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 1.8rem;
-            background: #fff;
-            border-bottom: 1px solid #eee;
-        }
-        .modal-header h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: #1e2a2e;
-        }
-        .modal-close-btn {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #888;
-        }
-        .modal-body {
-            padding: 1.8rem;
-        }
-        .modal-detail-list {
-            background: #f9f5eb;
-            padding: 1rem;
-            border-radius: 20px;
-            margin-top: 1rem;
-        }
-        .modal-footer {
-            padding: 0 1.5rem 1.8rem 1.5rem;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .btn-book-now {
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            font-family: var(--font-body);
-        }
-        .btn-book-now:hover {
-            background: #a5823e;
-            transform: scale(1.02);
-        }
-
-        /* ========== RESPONSIVE NAVBAR IMPROVEMENTS ========== */
-        /* Tablet & Mobile: sembunyikan desktop nav, tampilkan mobile menu */
-        @media (max-width: 1024px) {
-            .nav-desktop {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            /* Perbaiki jarak pada header agar tidak sempit */
-            .header-container {
-                padding: 5px 15px;
-                gap: 12px;
-            }
-            .btn-primary {
-                padding: 8px 18px;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Layar kecil (max-width 768px) */
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 5px 12px;
-                gap: 8px;
-            }
-            .logo img {
-                height: 55px; /* proporsional, tidak mengubah desain */
-            }
-            .header-right {
-                gap: 0.8rem;
-            }
-            .btn-primary {
-                padding: 6px 14px;
-                font-size: 0.7rem;
-                letter-spacing: 0.5px;
-            }
-            .mobile-menu-btn {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* Layar sangat kecil (max-width 480px) */
-        @media (max-width: 480px) {
-            .header-container {
-                padding: 5px 10px;
-            }
-            .logo img {
-                height: 48px;
-            }
-            .btn-primary {
-                padding: 5px 10px;
-                font-size: 0.65rem;
-            }
-            .mobile-menu-btn {
-                font-size: 1.3rem;
-            }
-            .header-right {
-                gap: 0.5rem;
-            }
-        }
-
-        /* Perbaikan untuk landscape mode di tablet kecil */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .header-container {
-                padding: 3px 15px;
-            }
-            .logo img {
-                height: 50px;
-            }
-        }
-
-        /* Pastikan mobile nav tidak mengganggu scroll dan konsisten */
-        .mobile-nav.active {
-            overflow-y: auto;
-        }
-        
-        /* Tetap pertahankan tata letak konten lainnya */
-        @media (max-width: 992px) {
-            .catalog-layout {
-                grid-template-columns: 1fr;
-            }
-            .catalog-sidebar {
-                position: static;
-                margin-bottom: 30px;
-            }
-            .pricelist-hero h1 {
-                font-size: 2.5rem;
-            }
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            .cta-banner {
-                padding: 30px 20px;
-            }
-            .pricelist-hero {
-                padding: 110px 0 40px;
-            }
-        }
-    </style>
+    <!-- CSS Global (sudah berisi semua style dari index.html dan catalog.html) -->
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
-<header>
-    <div class="container header-container">
-        <div class="logo">
-            <a href="../../index.html">
-                <img src="../logo-stch.png" alt="STCH" onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
-            </a>
-        </div>
-        <nav class="nav-desktop">
-            <ul>
-                <li><a href="../../index.html" class="nav-link">Beranda</a></li>
-                <li><a href="catalog.html" class="nav-link active">Pricelist</a></li>
-                <li><a href="../../index.html#contact" class="nav-link">Kontak</a></li>
-            </ul>
-        </nav>
-        <div class="header-right">
-            <a href="reservasi/reservasi.php" class="btn-primary">Booking Now</a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-        </div>
-    </div>
-</header>
-
-<div class="mobile-nav" id="mobileNav">
-    <div class="mobile-nav-header">
-        <div class="logo"><img src="../logo-stch.png" alt="STCH" onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'"></div>
-        <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
-    </div>
-    <ul class="mobile-nav-links">
-        <li><a href="../../index.html" class="mobile-nav-link">Beranda</a></li>
-        <li><a href="catalog.html" class="mobile-nav-link active">Pricelist</a></li>
-        <li><a href="../../index.html#contact" class="mobile-nav-link">Kontak</a></li>
-        <li><a href="reservasi/reservasi.php" class="btn-primary" style="margin-top:1rem; text-align:center; display:block;">Booking Now</a></li>
-    </ul>
-</div>
-
-<!-- Hero Pricelist -->
-<section class="pricelist-hero">
-    <div class="container">
-        <h1 data-aos="fade-up">Pricelist & Paket Eksklusif</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Nikmati kemewahan & kenyamanan di Tabrani Guest House dan Susiana Tabrani Convention Hall. Pilih paket terbaik untuk acara Anda.</p>
-    </div>
-</section>
-
-<!-- Main Catalog -->
-<section class="catalog-section">
-    <div class="container">
-        <div class="catalog-layout" data-aos="fade-up">
-            <aside class="catalog-sidebar">
-                <h3><i class="fas fa-tags"></i> Kategori</h3>
+    <!-- ========== HEADER (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <img src="../logo-stch.png" alt="STCH"
+                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                </a>
+            </div>
+            <nav class="nav-desktop">
                 <ul>
-                    <li><a href="#TGH" class="cat-link" data-target="TGH"><i class="fas fa-hotel"></i> Tabrani Guest House</a></li>
-                    <li><a href="#STCH" class="cat-link" data-target="STCH"><i class="fas fa-building"></i> Convention Hall</a></li>
+                    <li><a href="../../index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="catalog.html" class="nav-link active">Pricelist</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Kontak</a></li>
                 </ul>
-                <div class="contact-sidebar-card">
-                    <i class="fas fa-headset" style="font-size: 2rem; color: var(--gold);"></i>
-                    <h4>Butuh Konsultasi?</h4>
-                    <p>Hubungi tim kami untuk penawaran terbaik</p>
-                    <a href="https://wa.me/6281234567890" class="btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat WA</a>
+            </nav>
+            <div class="header-right">
+                <!-- Perbaikan: gunakan class "btn btn-primary" seperti di index.html -->
+                <a href="reservasi/reservasi.php" class="btn btn-primary">Booking Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MOBILE NAV (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <img src="../logo-stch.png" alt="STCH"
+                    onerror="this.src='https://via.placeholder.com/120x40/1A1A1A/C5A059?text=STCH'">
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="../../index.html" class="mobile-nav-link">Beranda</a></li>
+            <li><a href="catalog.html" class="mobile-nav-link active">Pricelist</a></li>
+            <li><a href="../../index.html#contact" class="mobile-nav-link">Kontak</a></li>
+            <li><a href="reservasi/reservasi.php" class="btn btn-primary" style="margin-top:1rem;">Booking Now</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Pricelist -->
+    <section class="pricelist-hero">
+        <div class="container">
+            <h1 data-aos="fade-up">Pricelist & Paket Eksklusif</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Nikmati kemewahan & kenyamanan di Tabrani Guest House dan Susiana
+                Tabrani Convention Hall. Pilih paket terbaik untuk acara Anda.</p>
+        </div>
+    </section>
+
+    <!-- Main Catalog -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-layout" data-aos="fade-up">
+                <aside class="catalog-sidebar">
+                    <h3><i class="fas fa-tags"></i> Kategori</h3>
+                    <ul>
+                        <li><a href="#TGH" class="cat-link" data-target="TGH"><i class="fas fa-hotel"></i> Tabrani Guest
+                                House</a></li>
+                        <li><a href="#STCH" class="cat-link" data-target="STCH"><i class="fas fa-building"></i>
+                                Convention Hall</a></li>
+                    </ul>
+                    <div class="contact-sidebar-card">
+                        <i class="fas fa-headset" style="font-size: 2rem; color: var(--gold);"></i>
+                        <h4>Butuh Konsultasi?</h4>
+                        <p>Hubungi tim kami untuk penawaran terbaik</p>
+                        <a href="https://wa.me/6281234567890" class="btn-outline-gold"><i class="fab fa-whatsapp"></i>
+                            Chat WA</a>
+                    </div>
+                </aside>
+
+                <main class="catalog-main">
+                    <!-- Guest House Section -->
+                    <section id="TGH" class="product-section">
+                        <h3><i class="fas fa-bed"></i> Tabrani Guest House</h3>
+                        <div class="product-grid">
+                            <div class="product-card" data-package="Family Room">
+                                <div class="product-image">
+                                    <img src="reservasi/GUEST_HOUSE/family_room.jpg" alt="Family Room"
+                                        onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Family+Room'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Family Room</div>
+                                    <div class="product-meta"><i class="fas fa-users"></i> Max 6 dewasa | <i
+                                            class="fas fa-expand"></i> 45m²</div>
+                                    <div class="product-price">Rp 850.000<span style="font-size:0.9rem;">/malam</span>
+                                    </div>
+                                    <div class="product-desc">2 Kamar tidur terpisah, ruang keluarga, kitchen set,
+                                        pemandangan kota.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Standard Room Double Bed">
+                                <div class="product-image">
+                                    <img src="reservasi/GUEST_HOUSE/Standard_Room_Double_Bed.jpg" alt="Double Bed"
+                                        onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Double+Bed'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Standard Room Double Bed</div>
+                                    <div class="product-meta"><i class="fas fa-bed"></i> 2 orang | 25m²</div>
+                                    <div class="product-price">Rp 550.000<span style="font-size:0.9rem;">/malam</span>
+                                    </div>
+                                    <div class="product-desc">Nyaman dengan AC, TV 40", bathroom modern, coffee maker.
+                                    </div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Standard Room Twin Bed">
+                                <div class="product-image">
+                                    <img src="reservasi/GUEST_HOUSE/Standard_Room_Twin_Bed.jpg" alt="Twin Bed"
+                                        onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Twin+Bed'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Standard Room Twin Bed</div>
+                                    <div class="product-meta"><i class="fas fa-user-friends"></i> 2 orang | 25m²</div>
+                                    <div class="product-price">Rp 550.000<span style="font-size:0.9rem;">/malam</span>
+                                    </div>
+                                    <div class="product-desc">2 single bed premium, cocok untuk rekan bisnis atau
+                                        travel.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Convention Hall Section -->
+                    <section id="STCH" class="product-section">
+                        <h3><i class="fas fa-chalkboard-user"></i> Susiana Tabrani Convention Hall</h3>
+                        <div class="product-grid">
+                            <div class="product-card" data-package="Wedding Package">
+                                <div class="product-image"><img src="../whatsapp-image-2025-07-02-at-15.21.19.jpeg"
+                                        alt="Wedding"
+                                        onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Wedding'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Wedding Package</div>
+                                    <div class="product-meta"><i class="fas fa-users"></i> 500-1500 Pax</div>
+                                    <div class="product-price">Mulai Rp 55 Juta</div>
+                                    <div class="product-desc">Dekorasi megah, katering premium, sound system,
+                                        dokumentasi.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Graduation Package">
+                                <div class="product-image"><img src="../img_1192.webp" alt="Graduation"
+                                        onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Graduation'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Graduation Package</div>
+                                    <div class="product-meta"><i class="fas fa-graduation-cap"></i> 300-800 Pax</div>
+                                    <div class="product-price">Mulai Rp 28 Juta</div>
+                                    <div class="product-desc">Panggung, backdrop wisuda, rolling door, dokumentasi
+                                        resmi.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Manasik Haji & Umroh">
+                                <div class="product-image"><img src="../img_5606.webp" alt="Manasik"
+                                        onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Manasik'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Manasik Haji & Umroh</div>
+                                    <div class="product-meta"><i class="fas fa-mosque"></i> Kapasitas 1000+</div>
+                                    <div class="product-price">Mulai Rp 15 Juta</div>
+                                    <div class="product-desc">Area simulasi lengkap, proyektor, perlengkapan manasik.
+                                    </div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Iftar Package">
+                                <div class="badge-offer">🌙 Ramadhan Spesial</div>
+                                <div class="product-image"><img src="../img_0193.webp" alt="Iftar"
+                                        onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Iftar'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Iftar Package</div>
+                                    <div class="product-meta"><i class="fas fa-utensils"></i> Mulai 50 Pax</div>
+                                    <div class="product-price">Rp 75.000 /pax</div>
+                                    <div class="product-desc">Menu lengkap + takjil, dekorasi ramadhan, ruang privat.
+                                    </div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-package="Birthday Party">
+                                <div class="product-image"><img src="../img-20241119-wa0015-edited.jpg" alt="Birthday"
+                                        onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Birthday'">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">Birthday Party</div>
+                                    <div class="product-meta"><i class="fas fa-cake-candles"></i> 50-200 Tamu</div>
+                                    <div class="product-price">Mulai Rp 12 Juta</div>
+                                    <div class="product-desc">Dekorasi tema, kue ulang tahun, hiburan, doorprize.</div>
+                                    <button class="btn-small">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER (SAMA PERSIS DENGAN INDEX.HTML) ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../logo-stch.png" alt="STCH"
+                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                    <p>Gedung serbaguna mewah dengan nuansa Islami dan Melayu di jantung kota Pekanbaru.</p>
                 </div>
-            </aside>
-
-            <main class="catalog-main">
-                <!-- Guest House Section -->
-                <section id="TGH" class="product-section">
-                    <h3><i class="fas fa-bed"></i> Tabrani Guest House</h3>
-                    <div class="product-grid">
-                        <div class="product-card" data-package="Family Room">
-                            <div class="product-image">
-                                <img src="reservasi/GUEST_HOUSE/family_room.jpg" alt="Family Room" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Family+Room'">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Family Room</div>
-                                <div class="product-meta"><i class="fas fa-users"></i> Max 6 dewasa  | <i class="fas fa-expand"></i> 45m²</div>
-                                <div class="product-price">Rp 850.000<span style="font-size:0.9rem;">/malam</span></div>
-                                <div class="product-desc">2 Kamar tidur terpisah, ruang keluarga, kitchen set, pemandangan kota.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                        <div class="product-card" data-package="Standard Room Double Bed">
-                            <div class="product-image">
-                                <img src="reservasi/GUEST_HOUSE/Standard_Room_Double_Bed.jpg" alt="Double Bed" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Double+Bed'">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Standard Room Double Bed</div>
-                                <div class="product-meta"><i class="fas fa-bed"></i> 2 orang  | 25m²</div>
-                                <div class="product-price">Rp 550.000<span style="font-size:0.9rem;">/malam</span></div>
-                                <div class="product-desc">Nyaman dengan AC, TV 40", bathroom modern, coffee maker.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                        <div class="product-card" data-package="Standard Room Twin Bed">
-                            <div class="product-image">
-                                <img src="reservasi/GUEST_HOUSE/Standard_Room_Twin_Bed.jpg" alt="Twin Bed" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/C5A059?text=Twin+Bed'">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Standard Room Twin Bed</div>
-                                <div class="product-meta"><i class="fas fa-user-friends"></i> 2 orang  | 25m²</div>
-                                <div class="product-price">Rp 550.000<span style="font-size:0.9rem;">/malam</span></div>
-                                <div class="product-desc">2 single bed premium, cocok untuk rekan bisnis atau travel.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Convention Hall Section -->
-                <section id="STCH" class="product-section">
-                    <h3><i class="fas fa-chalkboard-user"></i> Susiana Tabrani Convention Hall</h3>
-                    <div class="product-grid">
-                        <div class="product-card" data-package="Wedding Package">
-                            <div class="product-image"><img src="../whatsapp-image-2025-07-02-at-15.21.19.jpeg" alt="Wedding" onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Wedding'"></div>
-                            <div class="product-info">
-                                <div class="product-title">Wedding Package</div>
-                                <div class="product-meta"><i class="fas fa-users"></i> 500-1500 Pax</div>
-                                <div class="product-price">Mulai Rp 55 Juta</div>
-                                <div class="product-desc">Dekorasi megah, katering premium, sound system, dokumentasi.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                        <div class="product-card" data-package="Graduation Package">
-                            <div class="product-image"><img src="../img_1192.webp" alt="Graduation" onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Graduation'"></div>
-                            <div class="product-info">
-                                <div class="product-title">Graduation Package</div>
-                                <div class="product-meta"><i class="fas fa-graduation-cap"></i> 300-800 Pax</div>
-                                <div class="product-price">Mulai Rp 28 Juta</div>
-                                <div class="product-desc">Panggung, backdrop wisuda, rolling door, dokumentasi resmi.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                        <div class="product-card" data-package="Manasik Haji & Umroh">
-                            <div class="product-image"><img src="../img_5606.webp" alt="Manasik" onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Manasik'"></div>
-                            <div class="product-info">
-                                <div class="product-title">Manasik Haji & Umroh</div>
-                                <div class="product-meta"><i class="fas fa-mosque"></i> Kapasitas 1000+</div>
-                                <div class="product-price">Mulai Rp 15 Juta</div>
-                                <div class="product-desc">Area simulasi lengkap, proyektor, perlengkapan manasik.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                        <div class="product-card" data-package="Iftar Package">
-                            <div class="badge-offer">🌙 Ramadhan Spesial</div>
-                            <div class="product-image"><img src="../img_0193.webp" alt="Iftar" onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Iftar'"></div>
-                            <div class="product-info">
-                                <div class="product-title">Iftar Package</div>
-                                <div class="product-meta"><i class="fas fa-utensils"></i> Mulai 50 Pax</div>
-                                <div class="product-price">Rp 75.000 /pax</div>
-                                <div class="product-desc">Menu lengkap + takjil, dekorasi ramadhan, ruang privat.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                        <div class="product-card" data-package="Birthday Party">
-                            <div class="product-image"><img src="../img-20241119-wa0015-edited.jpg" alt="Birthday" onerror="this.src='https://via.placeholder.com/300x220/C5A059/1A1A1A?text=Birthday'"></div>
-                            <div class="product-info">
-                                <div class="product-title">Birthday Party</div>
-                                <div class="product-meta"><i class="fas fa-cake-candles"></i> 50-200 Tamu</div>
-                                <div class="product-price">Mulai Rp 12 Juta</div>
-                                <div class="product-desc">Dekorasi tema, kue ulang tahun, hiburan, doorprize.</div>
-                                <button class="btn-small">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="../logo-stch.png" alt="STCH" onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
-                <p>Gedung serbaguna mewah dengan nuansa Islami dan Melayu di jantung kota Pekanbaru.</p>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html#about">Tentang</a></li>
+                        <li><a href="catalog.html">Pricelist</a></li>
+                        <li><a href="../../index.html#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="catalog.html">Pernikahan</a></li>
+                        <li><a href="catalog.html">Seminar</a></li>
+                        <li><a href="catalog.html">Wisuda</a></li>
+                        <li><a href="catalog.html">Iftar</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#about">Tentang</a></li>
-                    <li><a href="#catalog">Pricelist</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Layanan</h4>
-                <ul>
-                    <li><a href="#home">Pernikahan</a></li>
-                    <li><a href="#home">Seminar</a></li>
-                    <li><a href="#home">Wisuda</a></li>
-                    <li><a href="#home">Iftar</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Susiana Tabrani Convention Hall. All rights reserved.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Susiana Tabrani Convention Hall. All rights reserved.</p>
+    </footer>
+
+    <!-- MODAL POPUP -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalPackageTitle">Detail Paket</h3>
+                <button class="modal-close-btn" id="modalCloseIconBtn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBodyContent">
+                <div class="modal-desc" id="modalDescText"></div>
+                <div class="modal-detail-list" id="modalFacilities"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="reservasi/reservasi.php" class="btn-book-now" id="bookNowBtn">Book Now</a>
+            </div>
         </div>
     </div>
-</footer>
 
-<!-- MODAL POPUP -->
-<div class="modal-overlay" id="detailModal">
-    <div class="modal-container">
-        <div class="modal-header">
-            <h3 id="modalPackageTitle">Detail Paket</h3>
-            <button class="modal-close-btn" id="modalCloseIconBtn">&times;</button>
-        </div>
-        <div class="modal-body" id="modalBodyContent">
-            <div class="modal-desc" id="modalDescText"></div>
-            <div class="modal-detail-list" id="modalFacilities"></div>
-        </div>
-        <div class="modal-footer">
-            <a href="reservasi/reservasi.php" class="btn-book-now" id="bookNowBtn">Book Now</a>
-        </div>
-    </div>
-</div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ duration: 800, once: true });
-    
-    // Mobile Navigation
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileClose = document.getElementById('mobileNavClose');
-    if(mobileBtn) mobileBtn.onclick = () => mobileNav.classList.add('active');
-    if(mobileClose) mobileClose.onclick = () => mobileNav.classList.remove('active');
-    
-    // Smooth scroll for category links
-    document.querySelectorAll('.cat-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('data-target');
-            const targetSection = document.getElementById(targetId);
-            if(targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+        // Mobile Navigation
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileClose = document.getElementById('mobileNavClose');
+        if (mobileBtn) mobileBtn.onclick = () => mobileNav.classList.add('active');
+        if (mobileClose) mobileClose.onclick = () => mobileNav.classList.remove('active');
+
+        // Smooth scroll for category links
+        document.querySelectorAll('.cat-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
-    });
 
-    // Modal Logic with Rich Data
-    const modal = document.getElementById('detailModal');
-    const modalTitle = document.getElementById('modalPackageTitle');
-    const modalDesc = document.getElementById('modalDescText');
-    const modalFacilities = document.getElementById('modalFacilities');
-    const closeIcon = document.getElementById('modalCloseIconBtn');
-    
-    const packageDetails = {
-        "Family Room": { desc: "🌸 Family Room seluas 45m² dengan 2 kamar tidur terpisah, ruang keluarga, dan dapur mini. Cocok untuk liburan keluarga besar.", facilities: "<p><i class='fas fa-bed'></i> 1 King Bed + 2 Single Bed</p><p><i class='fas fa-wifi'></i> WiFi Unlimited</p><p><i class='fas fa-tv'></i> Smart TV 55\" + Netflix</p><p><i class='fas fa-utensils'></i> Kitchen set & kulkas</p>" },
-        "Standard Room Double Bed": { desc: "✨ Kamar nyaman dengan double bed premium, cocok untuk pasangan atau solo traveler. Fasilitas lengkap.", facilities: "<p><i class='fas fa-bed'></i> Extra Comfort Double Bed</p><p><i class='fas fa-wind'></i> AC Panasonic</p><p><i class='fas fa-shower'></i> Shower + Water Heater</p><p><i class='fas fa-mug-hot'></i> Fasilitas Coffee/Tea</p>" },
-        "Standard Room Twin Bed": { desc: "🛏️ Dua single bed dengan kasur berkualitas tinggi. Desain modern dan pencahayaan alami.", facilities: "<p><i class='fas fa-bed'></i> 2 Single Bed (120x200)</p><p><i class='fas fa-desk'></i> Meja kerja + Lampu baca</p><p><i class='fas fa-lock'></i> Safety Deposit Box</p><p><i class='fas fa-plug'></i> Universal socket</p>" },
-        "Wedding Package": { desc: "💍 Paket pernikahan all-inclusive: dekorasi mewah, katering 5 hidangan, dokumentasi profesional, dan sound system. Tersedia konsep indoor/outdoor.", facilities: "<p><i class='fas fa-ring'></i> Dekorasi pelaminan + panggung megah</p><p><i class='fas fa-utensils'></i> Menu premium (500-1500 pax)</p><p><i class='fas fa-camera'></i> Foto & video prewedding + dokumentasi</p><p><i class='fas fa-music'></i> Live musik atau orkestra tersedia</p>" },
-        "Graduation Package": { desc: "🎓 Paket wisuda profesional dengan panggung, backdrop bertema akademik, sound system, dan dokumentasi resmi.", facilities: "<p><i class='fas fa-microphone'></i> 4 Wireless Mic + Sound JBL</p><p><i class='fas fa-chair'></i> Kursi VIP + 800 kursi tamu</p><p><i class='fas fa-bullhorn'></i> MC Profesional</p><p><i class='fas fa-video'></i> Live streaming optional</p>" },
-        "Manasik Haji & Umroh": { desc: "🕋 Paket manasik terintegrasi dengan area simulasi sa'i, lempar jumrah, dan proyektor interaktif.", facilities: "<p><i class='fas fa-mosque'></i> Area miniatur Ka'bah & Sa'i</p><p><i class='fas fa-video'></i> Layar LED 6x3 meter</p><p><i class='fas fa-hand-holding-heart'></i> Buku panduan + konsultasi</p><p><i class='fas fa-water'></i> Tempat wudhu luas</p>" },
-        "Iftar Package": { desc: "🌙 Menu berbuka spesial: kurma, kolak, nasi kebuli, ayam bakar, aneka gorengan, dan es buah. Ruangan ber-AC dengan pemisahan pria/wanita.", facilities: "<p><i class='fas fa-utensils'></i> Menu prasmanan lengkap + takjil</p><p><i class='fas fa-moon'></i> Dekorasi Ramadhan eksklusif</p><p><i class='fas fa-charging-station'></i> Area wudhu plus karpet sajadah</p><p><i class='fas fa-quran'></i> Audio murottal</p>" },
-        "Birthday Party": { desc: "🎂 Rayakan ulang tahun dengan tema favorit (putri, superhero, dll). Paket termasuk kue 2 tingkat, dekorasi balon, dan doorprize.", facilities: "<p><i class='fas fa-balloon'></i> Dekorasi balon + backdrop karakter</p><p><i class='fas fa-music'></i> Sound system + mic karaoke</p><p><i class='fas fa-gift'></i> Doorprize & goodie bag untuk tamu anak</p><p><i class='fas fa-camera'></i> Fotografer 2 jam</p>" }
-    };
-    
-    function openModal(packageName) {
-        const data = packageDetails[packageName] || packageDetails["Wedding Package"];
-        modalTitle.innerText = packageName;
-        modalDesc.innerHTML = data.desc || "Paket eksklusif dengan fasilitas terbaik. Hubungi kami untuk customisasi.";
-        modalFacilities.innerHTML = data.facilities || "<p><i class='fas fa-check-circle'></i> Fasilitas premium convention hall</p><p><i class='fas fa-parking'></i> Parkir luas 500+ mobil</p><p><i class='fas fa-wifi'></i> WiFi kecepatan tinggi</p>";
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    document.querySelectorAll('.btn-small').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const card = btn.closest('.product-card');
-            const pkgName = card?.querySelector('.product-title')?.innerText.trim() || "Paket Pilihan";
-            openModal(pkgName);
+        // Modal Logic with Rich Data
+        const modal = document.getElementById('detailModal');
+        const modalTitle = document.getElementById('modalPackageTitle');
+        const modalDesc = document.getElementById('modalDescText');
+        const modalFacilities = document.getElementById('modalFacilities');
+        const closeIcon = document.getElementById('modalCloseIconBtn');
+
+        const packageDetails = {
+            "Family Room": { desc: "🌸 Family Room seluas 45m² dengan 2 kamar tidur terpisah, ruang keluarga, dan dapur mini. Cocok untuk liburan keluarga besar.", facilities: "<p><i class='fas fa-bed'></i> 1 King Bed + 2 Single Bed</p><p><i class='fas fa-wifi'></i> WiFi Unlimited</p><p><i class='fas fa-tv'></i> Smart TV 55\" + Netflix</p><p><i class='fas fa-utensils'></i> Kitchen set & kulkas</p>" },
+            "Standard Room Double Bed": { desc: "✨ Kamar nyaman dengan double bed premium, cocok untuk pasangan atau solo traveler. Fasilitas lengkap.", facilities: "<p><i class='fas fa-bed'></i> Extra Comfort Double Bed</p><p><i class='fas fa-wind'></i> AC Panasonic</p><p><i class='fas fa-shower'></i> Shower + Water Heater</p><p><i class='fas fa-mug-hot'></i> Fasilitas Coffee/Tea</p>" },
+            "Standard Room Twin Bed": { desc: "🛏️ Dua single bed dengan kasur berkualitas tinggi. Desain modern dan pencahayaan alami.", facilities: "<p><i class='fas fa-bed'></i> 2 Single Bed (120x200)</p><p><i class='fas fa-desk'></i> Meja kerja + Lampu baca</p><p><i class='fas fa-lock'></i> Safety Deposit Box</p><p><i class='fas fa-plug'></i> Universal socket</p>" },
+            "Wedding Package": { desc: "💍 Paket pernikahan all-inclusive: dekorasi mewah, katering 5 hidangan, dokumentasi profesional, dan sound system. Tersedia konsep indoor/outdoor.", facilities: "<p><i class='fas fa-ring'></i> Dekorasi pelaminan + panggung megah</p><p><i class='fas fa-utensils'></i> Menu premium (500-1500 pax)</p><p><i class='fas fa-camera'></i> Foto & video prewedding + dokumentasi</p><p><i class='fas fa-music'></i> Live musik atau orkestra tersedia</p>" },
+            "Graduation Package": { desc: "🎓 Paket wisuda profesional dengan panggung, backdrop bertema akademik, sound system, dan dokumentasi resmi.", facilities: "<p><i class='fas fa-microphone'></i> 4 Wireless Mic + Sound JBL</p><p><i class='fas fa-chair'></i> Kursi VIP + 800 kursi tamu</p><p><i class='fas fa-bullhorn'></i> MC Profesional</p><p><i class='fas fa-video'></i> Live streaming optional</p>" },
+            "Manasik Haji & Umroh": { desc: "🕋 Paket manasik terintegrasi dengan area simulasi sa'i, lempar jumrah, dan proyektor interaktif.", facilities: "<p><i class='fas fa-mosque'></i> Area miniatur Ka'bah & Sa'i</p><p><i class='fas fa-video'></i> Layar LED 6x3 meter</p><p><i class='fas fa-hand-holding-heart'></i> Buku panduan + konsultasi</p><p><i class='fas fa-water'></i> Tempat wudhu luas</p>" },
+            "Iftar Package": { desc: "🌙 Menu berbuka spesial: kurma, kolak, nasi kebuli, ayam bakar, aneka gorengan, dan es buah. Ruangan ber-AC dengan pemisahan pria/wanita.", facilities: "<p><i class='fas fa-utensils'></i> Menu prasmanan lengkap + takjil</p><p><i class='fas fa-moon'></i> Dekorasi Ramadhan eksklusif</p><p><i class='fas fa-charging-station'></i> Area wudhu plus karpet sajadah</p><p><i class='fas fa-quran'></i> Audio murottal</p>" },
+            "Birthday Party": { desc: "🎂 Rayakan ulang tahun dengan tema favorit (putri, superhero, dll). Paket termasuk kue 2 tingkat, dekorasi balon, dan doorprize.", facilities: "<p><i class='fas fa-balloon'></i> Dekorasi balon + backdrop karakter</p><p><i class='fas fa-music'></i> Sound system + mic karaoke</p><p><i class='fas fa-gift'></i> Doorprize & goodie bag untuk tamu anak</p><p><i class='fas fa-camera'></i> Fotografer 2 jam</p>" }
+        };
+
+        function openModal(packageName) {
+            const data = packageDetails[packageName] || packageDetails["Wedding Package"];
+            modalTitle.innerText = packageName;
+            modalDesc.innerHTML = data.desc || "Paket eksklusif dengan fasilitas terbaik. Hubungi kami untuk customisasi.";
+            modalFacilities.innerHTML = data.facilities || "<p><i class='fas fa-check-circle'></i> Fasilitas premium convention hall</p><p><i class='fas fa-parking'></i> Parkir luas 500+ mobil</p><p><i class='fas fa-wifi'></i> WiFi kecepatan tinggi</p>";
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.btn-small').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = btn.closest('.product-card');
+                const pkgName = card?.querySelector('.product-title')?.innerText.trim() || "Paket Pilihan";
+                openModal(pkgName);
+            });
         });
-    });
-    
-    closeIcon?.addEventListener('click', closeModal);
-    modal?.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal?.classList.contains('active')) closeModal(); });
-</script>
+
+        closeIcon?.addEventListener('click', closeModal);
+        modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal?.classList.contains('active')) closeModal(); });
+    </script>
 </body>
+
 </html>

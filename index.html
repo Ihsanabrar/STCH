@@ -25,43 +25,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- CSS tambahan untuk memusatkan navbar secara sempurna -->
-    <style>
-        /* Buat header container sebagai relative anchor */
-        .header-container {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        /* Menu desktop diposisikan absolute di tengah horizontal */
-        .nav-desktop {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap; /* Mencegah menu turun ke bawah */
-        }
-        /* Pastikan list menu tetap rapi */
-        .nav-desktop ul {
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-        /* Tombol dan logo tetap di sisi kiri/kanan */
-        .logo, .header-right {
-            flex-shrink: 0;
-            z-index: 1;
-        }
-        /* Responsif: sembunyikan menu desktop di mobile, tampilkan mobile nav */
-        @media (max-width: 992px) {
-            .nav-desktop {
-                display: none;
-            }
-            .header-container {
-                justify-content: space-between;
-            }
-        }
-    </style>
 </head>
 
 <body>
