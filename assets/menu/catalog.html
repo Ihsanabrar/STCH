@@ -181,6 +181,38 @@
         .btn-small {
             cursor: pointer;
         }
+
+        /* ===== NAVBAR CENTER (SAMA SEPERTI SEBELUMNYA) ===== */
+        .header-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-desktop {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .nav-desktop ul {
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        .logo, .header-right {
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        @media (max-width: 992px) {
+            .nav-desktop {
+                display: none;
+            }
+            .header-container {
+                justify-content: space-between;
+            }
+        }
     </style>
 </head>
 <body>
@@ -243,7 +275,6 @@
 
                 <!-- Konten Utama -->
                 <main class="catalog-main">
-
 
                     <!-- Section TERBARU: Tabrani Guest House -->
                     <section class="TGH" id="TGH">
@@ -346,10 +377,10 @@
                 <div class="footer-links">
                     <h4>Layanan</h4>
                     <ul>
-                        <li><a href="#">Pernikahan</a></li>
-                        <li><a href="#">Seminar</a></li>
-                        <li><a href="#">Wisuda</a></li>
-                        <li><a href="#">Iftar</a></li>
+                        <li><a href="#home">Pernikahan</a></li>
+                        <li><a href="#home">Seminar</a></li>
+                        <li><a href="#home">Wisuda</a></li>
+                        <li><a href="#home">Iftar</a></li>
                     </ul>
                 </div>
             </div>

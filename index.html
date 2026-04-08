@@ -24,7 +24,44 @@
     <!-- Custom CSS (tidak diubah) -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- CSS tambahan untuk Pricelist (tanpa mengubah style bawaan) -->
+    <!-- CSS tambahan untuk memusatkan navbar secara sempurna -->
+    <style>
+        /* Buat header container sebagai relative anchor */
+        .header-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Menu desktop diposisikan absolute di tengah horizontal */
+        .nav-desktop {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Mencegah menu turun ke bawah */
+        }
+        /* Pastikan list menu tetap rapi */
+        .nav-desktop ul {
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        /* Tombol dan logo tetap di sisi kiri/kanan */
+        .logo, .header-right {
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        /* Responsif: sembunyikan menu desktop di mobile, tampilkan mobile nav */
+        @media (max-width: 992px) {
+            .nav-desktop {
+                display: none;
+            }
+            .header-container {
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -39,9 +76,8 @@
             </div>
             <nav class="nav-desktop">
                 <ul>
-                    <li><a href="#beranda" class="nav-link">Beranda</a></li>
-                    <li><a href="assets/menu/catalog.html" class="nav-link">Pricelist</a></li> <!-- Baru -->
-
+                    <li><a href="#home" class="nav-link">Beranda</a></li>
+                    <li><a href="assets/menu/catalog.html" class="nav-link">Pricelist</a></li>
                     <li><a href="#contact" class="nav-link">Kontak</a></li>
                 </ul>
             </nav>
@@ -65,7 +101,7 @@
         </div>
         <ul class="mobile-nav-links">
             <li><a href="#home" class="mobile-nav-link">Beranda</a></li>
-            <li><a href="assets/menu/catalog.html" class="mobile-nav-link">Pricelist</a></li> <!-- Baru -->
+            <li><a href="assets/menu/catalog.html" class="mobile-nav-link">Pricelist</a></li>
             <li><a href="#contact" class="mobile-nav-link">Kontak</a></li>
             <li><a href="assets/menu/reservasi/reservasi.php" class="btn btn-primary" style="margin-top:1rem;">Booking Now</a></li>
         </ul>
@@ -308,8 +344,6 @@
         </div>
     </section>
 
-
-
     <!-- ========== OWNER SECTION ========== -->
     <section class="owner">
         <div class="container">
@@ -420,17 +454,17 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#about">Tentang</a></li>
-                        <li><a href="assets/menu/catalog.html">Pricelist</a></li> <!-- Baru -->
+                        <li><a href="assets/menu/catalog.html">Pricelist</a></li>
                         <li><a href="#contact">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Layanan</h4>
                     <ul>
-                        <li><a href="#">Pernikahan</a></li>
-                        <li><a href="#">Seminar</a></li>
-                        <li><a href="#">Wisuda</a></li>
-                        <li><a href="#">Iftar</a></li>
+                        <li><a href="assets/menu/catalog.html">Pernikahan</a></li>
+                        <li><a href="assets/menu/catalog.html">Seminar</a></li>
+                        <li><a href="assets/menu/catalog.html">Wisuda</a></li>
+                        <li><a href="assets/menu/catalog.html">Iftar</a></li>
                     </ul>
                 </div>
             </div>
