@@ -34,66 +34,103 @@ while ($row = $result->fetch_assoc()) {
     if ($row['is_booked'] == 0) $available_rooms[] = $row;
 }
 
-/**
- * Fungsi untuk mendapatkan gambar kamar
- * Prioritas:
- * 1. Kolom 'image' di database (jika terisi dan file ada)
- * 2. File dengan nama sesuai room_name di folder GUEST_HOUSE/
- * 3. Gambar default
- */
 function getRoomImage($room) {
-    // 1. Jika kolom image di database terisi dan file-nya ada
     if (!empty($room['image']) && file_exists($room['image'])) {
         return $room['image'];
     }
-    
-    // 2. Cari gambar berdasarkan nama kamar (ubah spasi jadi underscore, lower case)
     $basePath = 'GUEST_HOUSE/';
     $imageName = str_replace(' ', '_', strtolower($room['room_name'])) . '.jpg';
     $customPath = $basePath . $imageName;
     if (file_exists($customPath)) {
         return $customPath;
     }
-    
-    // 3. Default fallback
     return 'GUEST_HOUSE/TGH-13.jpg';
+}
+
+// Fungsi untuk badge fasilitas berdasarkan nama kamar
+function getRoomBadge($roomName) {
+    if (stripos($roomName, 'family') !== false) return '👨‍👩‍👧‍👦 Family Room';
+    if (stripos($roomName, 'double') !== false) return '💑 Double Bed';
+    if (stripos($roomName, 'twin') !== false) return '👥 Twin Bed';
+    return '⭐ Standard Room';
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Pilih Kamar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Kamar - Tabrani Guest House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Pilih Kamar</h1>
-        <p>Periode: <?= $check_in ?> s/d <?= $check_out ?> (<?= $nights ?> malam)</p>
-        <?php if (empty($available_rooms)): ?>
-        <p class="error">Maaf, tidak ada kamar tersedia.</p>
-        <a href="reservasi.php" class="btn">Kembali</a>
-        <?php else: ?>
+<div class="container">
+    <div class="page-header">
+        <h1><i class="fas fa-bed"></i> Pilih Kamar Favorit Anda</h1>
+        <p>Kami menyediakan berbagai tipe kamar untuk kenyamanan menginap Anda</p>
+    </div>
+
+    <?php if (empty($available_rooms)): ?>
+        <div class="error">
+            <p>Maaf, tidak ada kamar tersedia untuk periode yang dipilih.</p>
+            <a href="reservasi.php" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Form</a>
+        </div>
+    <?php else: ?>
         <form action="proses.php" method="POST">
             <input type="hidden" name="nights" value="<?= $nights ?>">
-            <div class="room-list">
-                <?php foreach ($available_rooms as $room): ?>
-                <div class="room-card">
-                    <img src="<?= getRoomImage($room) ?>" alt="<?= $room['room_name'] ?>">
-                    <h3><?= $room['room_name'] ?></h3>
-                    <p><?= $room['description'] ?></p>
-                    <p>Kapasitas: <?= $room['capacity'] ?> orang</p>
-                    <p class="price">Rp <?= number_format($room['price_per_night'],0,',','.') ?> / malam</p>
-                    <p>Total: Rp <?= number_format($room['price_per_night'] * $nights,0,',','.') ?></p>
-                    <label>
-                        <input type="radio" name="room_id" value="<?= $room['id'] ?>" required>
-                        Pilih kamar ini
-                    </label>
+            <div class="two-columns">
+                <!-- SIDEBAR KIRI -->
+                <aside class="sidebar">
+                    <div class="guest-summary">
+                        <h3><i class="fas fa-user-check"></i> Detail Pemesan</h3>
+                        <p><i class="fas fa-user"></i> <?= $_SESSION['guest_data']['title'] . ' ' . $_SESSION['guest_data']['first_name'] . ' ' . $_SESSION['guest_data']['last_name'] ?></p>
+                        <p><i class="fas fa-envelope"></i> <?= $_SESSION['guest_data']['email'] ?></p>
+                        <p><i class="fas fa-phone"></i> <?= $_SESSION['guest_data']['phone'] ?></p>
+                    </div>
+                    <div class="date-box">
+                        <i class="fas fa-calendar-alt"></i> Check-in: <span><?= $check_in ?></span><br>
+                        <i class="fas fa-calendar-check"></i> Check-out: <span><?= $check_out ?></span><br>
+                        <i class="fas fa-moon"></i> Lama menginap: <span><?= $nights ?> malam</span>
+                    </div>
+                    <div class="sidebar-footer">
+                        <p><i class="fas fa-concierge-bell"></i> Layanan kamar 24 jam</p>
+                        <p><i class="fas fa-parking"></i> Parkir gratis untuk tamu</p>
+                        <p><i class="fas fa-wifi"></i> WiFi kecepatan tinggi</p>
+                        <p><i class="fas fa-coffee"></i> Coffee & Tea maker di setiap kamar</p>
+                        <a href="reservasi.php" class="btn-back" style="display:inline-block; margin-top:15px;"><i class="fas fa-edit"></i> Edit data pemesan</a>
+                    </div>
+                </aside>
+
+                <!-- DAFTAR KAMAR DI KANAN -->
+                <div class="rooms-content">
+                    <div class="room-list">
+                        <?php foreach ($available_rooms as $room): ?>
+                        <div class="room-card">
+                            <div class="room-badge">
+                                <i class="fas fa-tag"></i> <?= getRoomBadge($room['room_name']) ?>
+                            </div>
+                            <img src="<?= getRoomImage($room) ?>" alt="<?= $room['room_name'] ?>">
+                            <div class="room-info">
+                                <h3><?= $room['room_name'] ?></h3>
+                                <div class="room-desc"><?= $room['description'] ?></div>
+                                <div class="capacity"><i class="fas fa-users"></i> Kapasitas: <?= $room['capacity'] ?> orang</div>
+                                <div class="price">Rp <?= number_format($room['price_per_night'],0,',','.') ?> <span style="font-size:0.8rem;">/ malam</span></div>
+                                <div class="total-price">Total <?= $nights ?> malam: <strong>Rp <?= number_format($room['price_per_night'] * $nights,0,',','.') ?></strong></div>
+                                <label class="radio-label">
+                                    <input type="radio" name="room_id" value="<?= $room['id'] ?>" required>
+                                    <span>Pilih kamar ini <i class="fas fa-arrow-right"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <button type="submit"><i class="fas fa-credit-card"></i> Lanjutkan ke Pembayaran</button>
                 </div>
-                <?php endforeach; ?>
             </div>
-            <button type="submit" class="btn">Selanjutnya</button>
         </form>
-        <?php endif; ?>
-    </div>
+    <?php endif; ?>
+</div>
 </body>
 </html>
