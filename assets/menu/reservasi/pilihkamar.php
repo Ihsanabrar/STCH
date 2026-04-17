@@ -57,35 +57,45 @@ function getRoomBadge($roomName) {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Kamar - Tabrani Guest House</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="container">
-    <div class="page-header">
-        <h1><i class="fas fa-bed"></i> Pilih Kamar Favorit Anda</h1>
-        <p>Kami menyediakan berbagai tipe kamar untuk kenyamanan menginap Anda</p>
-    </div>
 
-    <?php if (empty($available_rooms)): ?>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-bed"></i> Pilih Kamar Favorit Anda</h1>
+            <p>Kami menyediakan berbagai tipe kamar untuk kenyamanan menginap Anda</p>
+        </div>
+
+        <?php if (empty($available_rooms)): ?>
         <div class="error">
             <p>Maaf, tidak ada kamar tersedia untuk periode yang dipilih.</p>
             <a href="reservasi.php" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Form</a>
         </div>
-    <?php else: ?>
+        <?php else: ?>
         <form action="proses.php" method="POST">
             <input type="hidden" name="nights" value="<?= $nights ?>">
+
+            <a href="../../../index.html" class="back-arrow-btn">
+                <i class="fas fa-arrow-left"></i> Kembali ke Form Reservasi
+            </a>
             <div class="two-columns">
                 <!-- SIDEBAR KIRI -->
                 <aside class="sidebar">
                     <div class="guest-summary">
                         <h3><i class="fas fa-user-check"></i> Detail Pemesan</h3>
-                        <p><i class="fas fa-user"></i> <?= $_SESSION['guest_data']['title'] . ' ' . $_SESSION['guest_data']['first_name'] . ' ' . $_SESSION['guest_data']['last_name'] ?></p>
+                        <p><i class="fas fa-user"></i>
+                            <?= $_SESSION['guest_data']['title'] . ' ' . $_SESSION['guest_data']['first_name'] . ' ' . $_SESSION['guest_data']['last_name'] ?>
+                        </p>
                         <p><i class="fas fa-envelope"></i> <?= $_SESSION['guest_data']['email'] ?></p>
                         <p><i class="fas fa-phone"></i> <?= $_SESSION['guest_data']['phone'] ?></p>
                     </div>
@@ -97,9 +107,10 @@ function getRoomBadge($roomName) {
                     <div class="sidebar-footer">
                         <p><i class="fas fa-concierge-bell"></i> Layanan kamar 24 jam</p>
                         <p><i class="fas fa-parking"></i> Parkir gratis untuk tamu</p>
-                        <p><i class="fas fa-wifi"></i> WiFi kecepatan tinggi</p>
+                        <p><i class="fas fa-wifi"></i>Tersedia WiFi</p>
                         <p><i class="fas fa-coffee"></i> Coffee & Tea maker di setiap kamar</p>
-                        <a href="reservasi.php" class="btn-back" style="display:inline-block; margin-top:15px;"><i class="fas fa-edit"></i> Edit data pemesan</a>
+                        <a href="reservasi.php" class="btn-back" style="display:inline-block; margin-top:15px;"><i
+                                class="fas fa-edit"></i> Edit data pemesan</a>
                     </div>
                 </aside>
 
@@ -115,9 +126,13 @@ function getRoomBadge($roomName) {
                             <div class="room-info">
                                 <h3><?= $room['room_name'] ?></h3>
                                 <div class="room-desc"><?= $room['description'] ?></div>
-                                <div class="capacity"><i class="fas fa-users"></i> Kapasitas: <?= $room['capacity'] ?> orang</div>
-                                <div class="price">Rp <?= number_format($room['price_per_night'],0,',','.') ?> <span style="font-size:0.8rem;">/ malam</span></div>
-                                <div class="total-price">Total <?= $nights ?> malam: <strong>Rp <?= number_format($room['price_per_night'] * $nights,0,',','.') ?></strong></div>
+                                <div class="capacity"><i class="fas fa-users"></i> Kapasitas: <?= $room['capacity'] ?>
+                                    orang</div>
+                                <div class="price">Rp <?= number_format($room['price_per_night'],0,',','.') ?> <span
+                                        style="font-size:0.8rem;">/ malam</span></div>
+                                <div class="total-price">Total <?= $nights ?> malam: <strong>Rp
+                                        <?= number_format($room['price_per_night'] * $nights,0,',','.') ?></strong>
+                                </div>
                                 <label class="radio-label">
                                     <input type="radio" name="room_id" value="<?= $room['id'] ?>" required>
                                     <span>Pilih kamar ini <i class="fas fa-arrow-right"></i></span>
@@ -130,7 +145,8 @@ function getRoomBadge($roomName) {
                 </div>
             </div>
         </form>
-    <?php endif; ?>
-</div>
+        <?php endif; ?>
+    </div>
 </body>
+
 </html>

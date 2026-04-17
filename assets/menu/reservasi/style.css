@@ -1382,3 +1382,66 @@ button[type="submit"]:hover {
         font-size: 1.5rem;
     }
 }
+
+/* ========== TOMBOL KEMBALI (PANAH) ========== */
+.back-arrow-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1A1A1A;
+    color: #C5A059;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+.back-arrow-btn i {
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.back-arrow-btn:hover {
+    background: #C5A059;
+    color: #1A1A1A;
+    border-color: #1A1A1A;
+}
+
+.back-arrow-btn:hover i {
+    transform: translateX(-3px);
+}
+
+/* Opsi posisi tetap di pojok (jika ingin floating) */
+.back-arrow-fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ========== PERBAIKAN POSISI TOMBOL KHUSUS HALAMAN RESERVASI ========== */
+.reservation-page .back-arrow-fixed {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: 20px;
+    box-shadow: none;
+}
+
+/* Pastikan gaya default untuk fixed tetap berjalan di halaman lain */
+.back-arrow-fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
