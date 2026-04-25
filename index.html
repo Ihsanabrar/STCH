@@ -24,7 +24,42 @@
     <!-- Custom CSS (tidak diubah) -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- CSS tambahan untuk memusatkan navbar secara sempurna -->
+    <!-- Style tambahan untuk memastikan peta memiliki ukuran & desain persis seperti TGH -->
+    <style>
+        /* ===== MAP STYLE - SAMA DENGAN TAMPILAN DI TGH ===== */
+        .contact-map {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            min-height: 320px;
+            background: #f0f0f0;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            border: 0;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-map iframe:hover {
+            transform: scale(1.01);
+        }
+
+        /* Responsive: pastikan peta tetap proporsional di mobile */
+        @media (max-width: 768px) {
+            .contact-map {
+                min-height: 280px;
+                border-radius: 20px;
+            }
+            .contact-map iframe {
+                min-height: 280px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -300,7 +335,7 @@
                             <li><i class="fas fa-check-circle"></i> Free WiFi & Sarapan</li>
                         </ul>
                         <div class="pricing-footer">
-                            <a href="assets/menu/catalog.html" class="btn btn-primary">Book Now</a>
+                            <a href="https://ihsanabrar.github.io/Tabrani-Guest-House/assets/menu/catalog.html" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -308,116 +343,50 @@
         </div>
     </section>
 
-    <!-- ========== OWNER SECTION ========== -->
     <section class="owner">
-        <div class="container">
-            <div class="owner-wrapper" data-aos="fade-up">
-                <div class="owner-image">
-                    <img src="assets/bu-susiana-edited-3.jpg" alt="Dr. dr. Susiana Tabrani, M.Pd"
-                        onerror="this.src='https://via.placeholder.com/300x300/1A1A1A/C5A059?text=Owner'">
-                </div>
-                <div class="owner-quote">
-                    <i class="fas fa-quote-left quote-icon"></i>
-                    <blockquote>
-                        <p>"Kami ingin setiap acara di STCH bukan hanya berlangsung meriah, tetapi juga membawa berkah
-                            dan kenangan indah bagi semua yang hadir."</p>
-                        <cite>Dr. dr. Susiana Tabrani, M.Pd</cite>
-                        <span>Owner</span>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
+        <div class="container"><div class="owner-wrapper" data-aos="fade-up"><div class="owner-image"><img src="assets/bu-susiana-edited-3.jpg" alt="Dr. dr. Susiana Tabrani, M.Pd"></div><div class="owner-quote"><i class="fas fa-quote-left quote-icon"></i><blockquote><p>"Kami ingin setiap acara di STCH bukan hanya berlangsung meriah, tetapi juga membawa berkah dan kenangan indah bagi semua yang hadir."</p><cite>Dr. dr. Susiana Tabrani, M.Pd</cite><span>Owner</span></blockquote></div></div></div>
     </section>
 
-    <!-- ========== TESTIMONIALS SECTION ========== -->
     <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Testimoni</span>
-                <h2>Apa Kata Mereka?</h2>
-            </div>
-            <div class="testimonial-slider" data-aos="fade-up">
-                <div class="testimonial-slide active">
-                    <div class="testimonial-card">
-                        <p>"Alhamdulillah acara pernikahan putri kami berjalan lancar dan khidmat. Gedungnya megah,
-                            parkir luas, dan tim STCH sangat profesional. Recomended!"</p>
-                        <h4>- Bapak Ahmad Fauzi</h4>
-                        <span>Pernikahan, 2024</span>
-                    </div>
-                </div>
-                <div class="testimonial-slide">
-                    <div class="testimonial-card">
-                        <p>"Seminar perusahaan kami dengan peserta 1500 orang berlangsung sukses. Fasilitas lengkap,
-                            sound system jernih, dan AC dingin. Terima kasih STCH!"</p>
-                        <h4>- PT. Riau Andalan</h4>
-                        <span>Corporate Seminar, 2024</span>
-                    </div>
-                </div>
-                <div class="testimonial-slide">
-                    <div class="testimonial-card">
-                        <p>"Tempatnya cantik banget! Taman dan gedung mediteranianya instagramable. Tamu undangan pada
-                            betah. Next kalau ada acara keluarga, pasti balik lagi."</p>
-                        <h4>- Ibu Rina Andriani</h4>
-                        <span>Resepsi Pernikahan</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
+        <div class="container"><div class="section-header" data-aos="fade-up"><span class="section-tag">Testimoni</span><h2>Apa Kata Mereka?</h2></div><div class="testimonial-slider" data-aos="fade-up"><div class="testimonial-slide active"><div class="testimonial-card"><p>"Alhamdulillah acara pernikahan putri kami berjalan lancar dan khidmat. Gedungnya megah, parkir luas, dan tim STCH sangat profesional. Recomended!"</p><h4>- Bapak Ahmad Fauzi</h4><span>Pernikahan, 2024</span></div></div><div class="testimonial-slide"><div class="testimonial-card"><p>"Seminar perusahaan kami dengan peserta 1500 orang berlangsung sukses. Fasilitas lengkap, sound system jernih, dan AC dingin. Terima kasih STCH!"</p><h4>- PT. Riau Andalan</h4><span>Corporate Seminar, 2024</span></div></div><div class="testimonial-slide"><div class="testimonial-card"><p>"Tempatnya cantik banget! Taman dan gedung mediteranianya instagramable. Tamu undangan pada betah. Next kalau ada acara keluarga, pasti balik lagi."</p><h4>- Ibu Rina Andriani</h4><span>Resepsi Pernikahan</span></div></div></div><div class="testimonial-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div></div>
     </section>
 
-    <!-- ========== CONTACT SECTION ========== -->
+    <!-- ========== CONTACT SECTION DENGAN MAP (ukuran & desain persis seperti TGH) ========== -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info" data-aos="fade-right">
                     <h2>Hubungi Kami</h2>
-                    <p>Kami siap membantu mewujudkan acara impian Anda. Silakan hubungi kami melalui formulir atau
-                        kontak di bawah.</p>
+                    <p>Kami siap membantu mewujudkan acara impian Anda. Silakan hubungi kami melalui formulir atau kontak di bawah.</p>
                     <div class="info-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Jl. Bakti No.32, Tengkerang Barat,
-
-                            Marpoyan Damai, Pekanbaru City,
-
-                            Riau 28289</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+6276138762">(0761) 38762</a> / <a
-                                href="https://wa.me/62811763566">0811-763-566</a></p>
-                        <p><i class="fas fa-envelope"></i> <a
-                                href="mailto:info@stch.com">susianatabrani.conventionhall@gmail.com</a></p>
+                        <p><i class="fas fa-map-marker-alt"></i> Jl. Bakti No.32, Tengkerang Barat, Marpoyan Damai, Pekanbaru City, Riau 28289</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+6276138762">(0761) 38762</a> / <a href="https://wa.me/62811763566">0811-763-566</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@stch.com">susianatabrani.conventionhall@gmail.com</a></p>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/susianatabrani.conventionhall.3"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/susianatabrani_conventionhall/"><i
-                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/susianatabrani.conventionhall.3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/susianatabrani_conventionhall/"><i class="fab fa-instagram"></i></a>
                         <a href="https://wa.me/62811763566"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                <div class="contact-form" data-aos="fade-left">
-                    <h3>Kritik & Saran</h3>
-                    <p>Masukan Anda sangat berarti bagi kami.</p>
-                    <form id="feedbackForm">
-                        <input type="text" placeholder="Nama Anda" required>
-                        <input type="email" placeholder="Email Anda" required>
-                        <textarea rows="4" placeholder="Tulis pesan Anda..." required></textarea>
-                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-                    </form>
+                <!-- MAP dengan ukuran & desain identik seperti Tabrani Guest House -->
+                <div class="contact-map" data-aos="fade-left">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6778820747527!2d101.42126657403703!3d0.4807342637548297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5a91918d5d3ad%3A0xdfd81c40a43c6385!2sSusiana%20Tabrani%20Convention%20Hall!5e0!3m2!1sid!2sid!4v1775966626716!5m2!1sid!2sid" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" 
+                        allowfullscreen="" 
+                        title="Lokasi Susiana Tabrani Convention Hall">
+                    </iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
+        <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/logo-stch.png" alt="STCH"
-                        onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                <div class="footer-logo"><img src="assets/logo-stch.png" alt="STCH">
                     <p>Gedung serbaguna mewah dengan nuansa Islami dan Melayu di jantung kota Pekanbaru.</p>
                 </div>
                 <div class="footer-links">
