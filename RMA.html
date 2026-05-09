@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rumah Adat Riau Abdurrab Malay Heritage - STCH</title>
+    <meta name="description" content="Rumah Adat Melayu kapasitas 200 orang dengan arsitektur asli Riau, ber-AC, dan taman privat di kompleks Susiana Tabrani Convention Hall.">
+    <link rel="shortcut icon" href="assets/logo-stch.png" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* ========== HERO SLIDER FULLSCREEN ========== */
+        .rumah-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            margin-top: 80px;
+            overflow: hidden;
+        }
+        
+        .hero-slider-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            will-change: opacity;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        
+        .hero-slider-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .rumah-badge {
+            display: inline-block;
+            background: rgba(197, 160, 89, 0.15);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.8rem;
+            color: white;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.6rem; }
+        }
+        @media (max-width: 768px) {
+            .rumah-hero { min-height: 500px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+        }
+        
+        /* ========== Gaya lainnya (tidak diubah) ========== */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .heritage-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(197,160,89,0.2);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .heritage-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+        
+        .heritage-img {
+            background-color: #f5f2eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .heritage-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .heritage-card:hover .heritage-img img {
+            transform: scale(1.02);
+        }
+        
+        .heritage-content {
+            padding: 1.8rem;
+            flex: 1;
+        }
+        
+        .heritage-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .detail-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .detail-list li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .detail-list i {
+            color: var(--gold);
+            width: 24px;
+        }
+        
+        .facility-grid-special {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .facility-special-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold);
+        }
+        
+        .facility-special-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        
+        .facility-special-card ul {
+            list-style: none;
+        }
+        
+        .facility-special-card li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .facility-special-card i {
+            color: var(--gold);
+            width: 22px;
+        }
+        
+        .inclusive-highlight {
+            background: #fef9ef;
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--gold);
+        }
+        
+        .inclusive-highlight h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        .two-col-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* ========== CAROUSEL PAKET (tanpa caption dan tanpa dot) ========== */
+        .paket-section {
+            background: linear-gradient(145deg, #0c0b0a 0%, #1e1b16 100%);
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .paket-section .section-header h2 {
+            color: white;
+        }
+        
+        .paket-section .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .paket-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 2rem auto 0;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 30px 40px -15px rgba(0,0,0,0.5);
+            background: #0a0a0a;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            background: #0a0a0a;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            object-fit: contain;
+            max-height: 80vh;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        
+        .carousel-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            padding: 30px 20px 25px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .carousel-slide:hover .slide-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .carousel-wa-btn {
+            background: var(--gold);
+            color: var(--black);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: none;
+            pointer-events: auto;
+        }
+        
+        .carousel-wa-btn:hover {
+            background: white;
+            color: var(--gold);
+            transform: scale(1.03);
+        }
+        
+        .slide-caption {
+            display: none;
+        }
+        
+        .carousel-dots {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .paket-section { padding: 50px 0; }
+            .carousel-btn { width: 36px; height: 36px; font-size: 1rem; }
+            .carousel-prev { left: 8px; }
+            .carousel-next { right: 8px; }
+            .carousel-wa-btn { padding: 8px 18px; font-size: 0.8rem; }
+        }
+        
+        .gallery-mini {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .gallery-mini img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #eee;
+        }
+        .gallery-mini img:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.1s ease;
+            cursor: grab;
+            user-select: none;
+        }
+        .lightbox-img:active {
+            cursor: grabbing;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            background: none;
+            border: none;
+            z-index: 10001;
+        }
+        
+        .price-special {
+            background: linear-gradient(145deg, #fef9ef, #fff6e8);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(197,160,89,0.5);
+        }
+        
+        .price-special .price-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--gold);
+            font-family: var(--font-heading);
+        }
+        
+        .btn-gold-large {
+            background: var(--gold);
+            color: var(--black);
+            padding: 14px 42px;
+            font-weight: 700;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.25s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-gold-large:hover {
+            background: #ad8748;
+            transform: scale(1.02);
+            color: #111;
+        }
+        
+        @media (max-width: 992px) {
+            .heritage-grid { grid-template-columns: 1fr; }
+            .two-col-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/logo-stch.png" alt="STCH" onerror="this.src='https://via.placeholder.com/150x60/1A1A1A/C5A059?text=STCH'">
+                </a>
+            </div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="assets/menu/catalog.html" class="nav-link">Pricelist</a></li>
+                    <li><a href="https://ignore-huddle-grit.ngrok-free.dev/dashboard/tabrani-guest-house-main/" class="nav-link">TGH</a></li>
+                    <li><a href="RMA.html" class="nav-link">Rumah Adat Melayu</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <a href="https://wa.me/62811763566" class="btn btn-primary">Booking Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <img src="assets/logo-stch.png" alt="STCH">
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-link">Beranda</a></li>
+            <li><a href="assets/menu/catalog.html" class="mobile-nav-link">Pricelist</a></li>
+            <li><a href="https://ignore-huddle-grit.ngrok-free.dev/dashboard/tabrani-guest-house-main/" class="mobile-nav-link">TGH</a></li>
+            <li><a href="RMA.html" class="mobile-nav-link">Rumah Adat Melayu</a></li>
+            <li><a href="https://wa.me/62811763566" class="btn btn-primary" style="margin-top:1rem;">Booking Now</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Slider -->
+    <section class="rumah-hero">
+        <div class="hero-slider-bg">
+            <div class="hero-slide active" style="background-image: url('assets/RMA1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('assets/seminar.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('assets/nikah2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('assets/nikah1.jpg');"></div>
+        </div>
+        <div class="hero-content-wrapper">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="rumah-badge"><i class="fas fa-archway"></i> Warisan Budaya Melayu</div>
+                <h1>Riau Abdurrab <br>Malay Heritage</h1>
+                <p>Rumah adat megah berarsitektur Melayu asli, perpaduan kemewahan dan tradisi. Kapasitas 200 tamu, ber-AC, taman privat, tersedia untuk pernikahan adat, pertemuan budaya & acara eksklusif.</p>
+                <a href="https://wa.me/62811763566" class="btn btn-primary" style="margin-top: 0.5rem; background: var(--gold); color: #1a1a1a; border-color: var(--gold);">Pesan Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Cards -->
+    <section style="padding: 40px 0 60px;">
+        <div class="container">
+            <div class="heritage-grid">
+                <div data-aos="fade-right">
+                    <div class="heritage-card" data-img-src="assets/RMA4.jpg">
+                        <div class="heritage-img">
+                            <img src="assets/RMA4.jpg" alt="Rumah Adat Eksklusif">
+                        </div>
+                        <div class="heritage-content">
+                            <h3>Rumah Adat Eksklusif</h3>
+                            <p>Arsitektur Melayu dengan ornamen khas, ruang utama luas, dan pencahayaan alami yang hangat. Cocok untuk akad nikah, resepsi terbatas (200 orang), atau pertemuan adat.</p>
+                            <ul class="detail-list">
+                                <li><i class="fas fa-wind"></i> Ruangan ber-AC full</li>
+                                <li><i class="fas fa-tree"></i> Taman privat & area foto</li>
+                                <li><i class="fas fa-chair"></i> Kursi & meja elegan (termasuk)</li>
+                                <li><i class="fas fa-mosque"></i> Dekat area Masjid At-Tabrani</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="heritage-card" data-img-src="assets/RMA3.jpg">
+                        <div class="heritage-img">
+                            <img src="assets/RMA3.jpg" alt="Nuansa Tradisional Modern">
+                        </div>
+                        <div class="heritage-content">
+                            <h3>Nuansa Tradisional Modern</h3>
+                            <p>Didedikasikan untuk melestarikan budaya Melayu, dilengkapi sistem audio, layar proyektor, dan ruang persiapan khusus pengantin / tamu VIP.</p>
+                            <ul class="detail-list">
+                                <li><i class="fas fa-users"></i> Kapasitas 200 orang (resepsi)</li>
+                                <li><i class="fas fa-parking"></i> Area parkir luas bersama STCH</li>
+                                <li><i class="fas fa-utensils"></i> Paket konsumsi tersedia</li>
+                                <li><i class="fas fa-camera"></i> Latar foto heritage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Unggulan -->
+    <section style="background: var(--offwhite); padding: 70px 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Fasilitas Unggulan</span>
+                <h2>Lengkapi Acara Anda</h2>
+                <p>Termasuk katering, stan, dan gratis 2 kamar guest house.</p>
+            </div>
+            <div class="facility-grid-special" data-aos="fade-up">
+                <div class="facility-special-card">
+                    <h4><i class="fas fa-concierge-bell"></i> Include Katering & Stan</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Paket katering siap saji</li>
+                        <li><i class="fas fa-check-circle"></i> Area stan untuk penjual atau UMKM</li>
+                    </ul>
+                </div>
+                <div class="facility-special-card">
+                    <h4><i class="fas fa-hotel"></i> Free 2 Guest House Room</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 2 kamar gratis di Tabrani Guest House</li>
+                        <li><i class="fas fa-check-circle"></i> Nyaman untuk keluarga atau pengantin</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-header" data-aos="fade-up" style="margin-top: 3rem;">
+                <span class="section-tag">Fasilitas Teknis</span>
+                <h2>Perlengkapan Standar</h2>
+            </div>
+            <div class="facility-grid-special" data-aos="fade-up" style="grid-template-columns: 1fr; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="facility-special-card">
+                    <h4><i class="fas fa-microphone-alt"></i> Fasilitas Lengkap</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> AC Central</li>
+                        <li><i class="fas fa-check-circle"></i> Electrical 200 KVA</li>
+                        <li><i class="fas fa-check-circle"></i> Genset 500 KVA</li>
+                        <li><i class="fas fa-check-circle"></i> Stage Standard</li>
+                        <li><i class="fas fa-check-circle"></i> Sound System Standard</li>
+                        <li><i class="fas fa-check-circle"></i> Lighting Standard</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="inclusive-highlight" data-aos="fade-up">
+                <h3><i class="fas fa-gift"></i> Package Inclusive:</h3>
+                <div class="two-col-list">
+                    <ul class="detail-list">
+                        <li><i class="fas fa-check-circle"></i> Event venue di Riau Abdurrab Malay Heritage</li>
+                        <li><i class="fas fa-check-circle"></i> Durasi penggunaan venue 7 Jam</li>
+                        <li><i class="fas fa-check-circle"></i> Special guest house room rate untuk tambahan kamar</li>
+                        <li><i class="fas fa-check-circle"></i> Kursi dan meja bundar VIP gratis</li>
+                    </ul>
+                    <ul class="detail-list">
+                        <li><i class="fas fa-check-circle"></i> Parkir gratis untuk semua tamu</li>
+                        <li><i class="fas fa-check-circle"></i> Gratis penggunaan masjid untuk akad nikah</li>
+                        <li><i class="fas fa-check-circle"></i> Free chair & round table</li>
+                        <li><i class="fas fa-check-circle"></i> Dokumentasi area heritage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Paket -->
+    <section class="paket-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Koleksi Istimewa</span>
+                <h2>Paket Pernikahan Eksklusif</h2>
+                <p>Setiap paket tersimpan dalam lembar kemewahan adat Melayu</p>
+            </div>
+            <div class="paket-carousel" data-aos="fade-up">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carouselSlides">
+                        <div class="carousel-slide" data-img-src="assets/PAKET ALL IN RAJA SEHARI belakang REVISI + UKIRAN MELAYU + REVISI NAMA PAKET NEW.png">
+                            <img src="assets/PAKET ALL IN RAJA SEHARI belakang REVISI + UKIRAN MELAYU + REVISI NAMA PAKET NEW.png" alt="Paket Adat Lengkap">
+                            <div class="slide-overlay">
+                                <a href="https://wa.me/62811763566" class="carousel-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> pesan sekarang</a>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-img-src="assets/Rumah Adat.jpg">
+                            <img src="assets/Rumah Adat.jpg" alt="Intimate Melayu">
+                            <div class="slide-overlay">
+                                <a href="https://wa.me/62811763566" class="carousel-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> pesan sekarang</a>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-img-src="assets/PAKET ALL IN RAJA SEHARI DEPAN FIX.jpg">
+                            <img src="assets/PAKET ALL IN RAJA SEHARI DEPAN FIX.jpg" alt="All In Raja Sehari">
+                            <div class="slide-overlay">
+                                <a href="https://wa.me/62811763566" class="carousel-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> pesan sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn carousel-next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Rumah Adat -->
+    <section style="background: #FDF8F0; padding: 60px 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Suasana Asri</span>
+                <h2>Galeri Rumah Adat</h2>
+            </div>
+            <div class="gallery-mini" data-aos="zoom-in">
+                <img src="assets/RMAR.jpg" alt="Rumah Adat sudut" class="gallery-img">
+                <img src="assets/seminar.jpg" alt="Interior kayu" class="gallery-img">
+                <img src="assets/khatam.jpg" alt="Taman sekitar" class="gallery-img">
+                <img src="assets/nikah2.jpg" alt="Detail ukiran" class="gallery-img">
+            </div>
+            <div class="price-special" data-aos="fade-up" style="margin-top: 3rem;">
+                <i class="fas fa-crown" style="font-size: 2rem; color: var(--gold);"></i>
+                <h3 style="margin: 0.8rem 0;">Butuh penawaran khusus?</h3>
+                <p>Diskon untuk event pernikahan atau acara komunitas budaya. Hubungi tim kami untuk konsultasi gratis.</p>
+                <div class="price-value">Mulai dari harga terbaik</div>
+                <a href="https://wa.me/62811763566" class="btn-gold-large"><i class="fab fa-whatsapp"></i> pesan sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak & Peta -->
+    <section class="contact" id="contact" style="padding-bottom: 80px;">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <h2>Kunjungi Kami</h2>
+                    <p>Rumah Adat Riau Abdurrab Malay Heritage berada dalam satu kompleks megah STCH, akses mudah dari pusat kota.</p>
+                    <div class="info-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Jl. Bakti No.32, Tengkerang Barat, Marpoyan Damai, Pekanbaru City, Riau 28289</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+6276138762">(0761) 38762</a> / <a href="https://wa.me/62811763566">0811-763-566</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:susianatabrani.conventionhall@gmail.com">susianatabrani.conventionhall@gmail.com</a></p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/susianatabrani.conventionhall.3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/susianatabrani_conventionhall/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/62811763566"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-map" data-aos="fade-left" style="border-radius: 24px; overflow: hidden; min-height: 320px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6778820747527!2d101.42126657403703!3d0.4807342637548297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5a91918d5d3ad%3A0xdfd81c40a43c6385!2sSusiana%20Tabrani%20Convention%20Hall!5e0!3m2!1sid!2sid!4v1775966626716!5m2!1sid!2sid" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen="" title="Lokasi Rumah Adat & STCH" style="width:100%; height:100%; min-height:320px; border:0;"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logo-stch.png" alt="STCH">
+                    <p>Gedung serbaguna mewah dengan nuansa Islami dan Melayu di jantung kota Pekanbaru.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">Tentang</a></li>
+                        <li><a href="assets/menu/catalog.html">Pricelist</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="assets/menu/catalog.html">Pernikahan</a></li>
+                        <li><a href="assets/menu/catalog.html">Seminar</a></li>
+                        <li><a href="assets/menu/catalog.html">Wisuda</a></li>
+                        <li><a href="assets/menu/catalog.html">Iftar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Susiana Tabrani Convention Hall. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <div class="lightbox-container">
+            <img id="lightbox-img" class="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+        
+        // Mobile navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+        if (mobileMenuBtn && mobileNav && mobileNavClose) {
+            mobileMenuBtn.addEventListener('click', () => mobileNav.classList.add('active'));
+            mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => mobileNav.classList.remove('active'));
+            });
+        }
+        
+        // ========== HERO SLIDER (lebih stabil) ==========
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        let heroCurrent = 0;
+        let heroInterval;
+        
+        function showHeroSlide(index) {
+            if (index < 0) index = heroSlides.length - 1;
+            if (index >= heroSlides.length) index = 0;
+            heroSlides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            heroCurrent = index;
+        }
+        
+        function nextHeroSlide() {
+            showHeroSlide(heroCurrent + 1);
+        }
+        
+        function startHeroSlider() {
+            if (heroInterval) clearInterval(heroInterval);
+            heroInterval = setInterval(nextHeroSlide, 3500);
+        }
+        
+        function stopHeroSlider() {
+            if (heroInterval) {
+                clearInterval(heroInterval);
+                heroInterval = null;
+            }
+        }
+        
+        const heroSection = document.querySelector('.rumah-hero');
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', stopHeroSlider);
+            heroSection.addEventListener('mouseleave', startHeroSlider);
+        }
+        startHeroSlider();
+        
+        // ========== CAROUSEL PAKET ==========
+        const carouselSlides = document.getElementById('carouselSlides');
+        const slidesPaket = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let paketCurrent = 0;
+        const totalPaket = slidesPaket.length;
+        let paketInterval;
+        
+        function updatePaketCarousel() {
+            const offset = -paketCurrent * 100;
+            carouselSlides.style.transform = `translateX(${offset}%)`;
+        }
+        
+        function goToPaketSlide(index) {
+            if (index < 0) index = totalPaket - 1;
+            if (index >= totalPaket) index = 0;
+            paketCurrent = index;
+            updatePaketCarousel();
+        }
+        
+        function nextPaketSlide() { goToPaketSlide(paketCurrent + 1); }
+        function prevPaketSlide() { goToPaketSlide(paketCurrent - 1); }
+        
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                clearInterval(paketInterval);
+                prevPaketSlide();
+                startPaketSlider();
+            });
+            nextBtn.addEventListener('click', () => {
+                clearInterval(paketInterval);
+                nextPaketSlide();
+                startPaketSlider();
+            });
+        }
+        
+        function startPaketSlider() {
+            if (paketInterval) clearInterval(paketInterval);
+            paketInterval = setInterval(nextPaketSlide, 6000);
+        }
+        
+        const paketCarousel = document.querySelector('.paket-carousel');
+        if (paketCarousel) {
+            paketCarousel.addEventListener('mouseenter', () => clearInterval(paketInterval));
+            paketCarousel.addEventListener('mouseleave', startPaketSlider);
+        }
+        startPaketSlider();
+        
+        // ========== LIGHTBOX DENGAN ZOOM ==========
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightboxBtn = document.querySelector('.lightbox-close');
+        
+        let scale = 1, translateX = 0, translateY = 0;
+        let drag = false, dragStartX, dragStartY, startTranslateX, startTranslateY;
+        
+        function resetZoom() { scale = 1; translateX = 0; translateY = 0; applyZoom(); }
+        function applyZoom() { lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`; }
+        function zoomIn() { if (scale < 3) { scale = Math.min(3, scale + 0.3); applyZoom(); } }
+        function zoomOut() { if (scale > 0.5) { scale = Math.max(0.5, scale - 0.3); if (scale === 1) { translateX = 0; translateY = 0; } applyZoom(); } }
+        
+        function onWheel(e) { e.preventDefault(); e.deltaY < 0 ? zoomIn() : zoomOut(); }
+        function onMouseDown(e) { drag = true; dragStartX = e.clientX; dragStartY = e.clientY; startTranslateX = translateX; startTranslateY = translateY; lightboxImg.style.cursor = 'grabbing'; e.preventDefault(); }
+        function onMouseMove(e) { if (!drag) return; const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY; translateX = startTranslateX + dx; translateY = startTranslateY + dy; applyZoom(); }
+        function onMouseUp() { drag = false; lightboxImg.style.cursor = 'grab'; }
+        
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            resetZoom();
+            lightboxImg.style.cursor = 'grab';
+            lightboxImg.addEventListener('mousedown', onMouseDown);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+            lightboxImg.addEventListener('wheel', onWheel, { passive: false });
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+            lightboxImg.removeEventListener('mousedown', onMouseDown);
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseup', onMouseUp);
+            lightboxImg.removeEventListener('wheel', onWheel);
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+        
+        document.querySelectorAll('.heritage-card, .carousel-slide, .gallery-img').forEach(el => {
+            el.addEventListener('click', (e) => {
+                let src = null;
+                if (el.classList.contains('heritage-card')) src = el.getAttribute('data-img-src');
+                else if (el.classList.contains('carousel-slide')) src = el.getAttribute('data-img-src');
+                else if (el.classList.contains('gallery-img')) src = el.src;
+                if (src) { e.stopPropagation(); openLightbox(src); }
+            });
+        });
+        
+        if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
+    </script>
+</body>
+</html>
